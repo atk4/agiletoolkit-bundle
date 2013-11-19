@@ -35,8 +35,8 @@ class RootedFrontend extends Frontend{
         $this->public_atk4 = $this->pathfinder->addLocation(array(
             'js'=>'js',
             'css'=>'css',
-            'template'=>'.',  // backward compatibility with < ?template? > for images
             'public'=>'.',    // use with new < ?public? > tag in your template
+//            'template'=>'.',  // backward compatibility with < ?template? > for images
         ))->setBasePath($parent_directory.'/public/atk4/atk4')
         ;
     }
