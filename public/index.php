@@ -14,17 +14,17 @@ class RootedFrontend extends Frontend{
         $parent_directory=dirname(dirname(@$_SERVER['SCRIPT_FILENAME']));
 
         // Private location contains templates and php files YOU develop yourself
-        $this->private_location = $this->pathfinder->addLocation('my-private',array(
+        $this->private_location = $this->pathfinder->addLocation(/*'my-private',*/array(
             'docs'=>'docs',
             'php'=>'lib',
             'page'=>'page',
-            'addons'=>array('atk4-addons','vendor'),
+            'addons'=>array('atk4-addons'/*,'vendor'*/),
             'template'=>'templates',
         ))->setBasePath($parent_directory)
         ;
 
         // this public location cotains YOUR js, css and images, but not templates
-        $this->public_location = $this->pathfinder->addLocation('my-public',array(
+        $this->public_location = $this->pathfinder->addLocation(array(
             'js'=>'js',
             'css'=>'css',
             'public'=>'.',  // use with < ?public? > tag in your template
@@ -32,11 +32,12 @@ class RootedFrontend extends Frontend{
         ;
 
         // agile toolkit relies on some images
-        $this->public_atk4 = $this->pathfinder->addLocation('atk4',array(
+        $this->public_atk4 = $this->pathfinder->addLocation(array(
             'js'=>'js',
+            'css'=>'css',
             'template'=>'.',  // backward compatibility with < ?template? > for images
             'public'=>'.',    // use with new < ?public? > tag in your template
-        ))->setBasePath($parent_directory.'/public/atk4')
+        ))->setBasePath($parent_directory.'/public/atk4/atk4')
         ;
     }
     /**
@@ -63,20 +64,12 @@ class RootedFrontend extends Frontend{
 
 
     function init(){
+        $this->public_location->setBaseURL($this->api->url('/'));
+        $this->public_atk4->setBaseURL($this->api->url('/').'/atk4/atk4');
         parent::init();
-
-        // Now $this->pm is initialized, we can fix the BaseURL for public locations
-        $this->public_location->setBaseURL($this->pm->base_path);
-        $this->public_atk4->setBaseURL($this->pm->base_path.'atk4');
     }
 
 
 }
 $api = new RootedFrontend('myrealm');
 $api->main();
-
-// create file pub/config.php with:
-// ====================================================
-// include'../config.php';
-// $config['atk']['base_path']='../atk4/';
-// ----------------------------------------------------

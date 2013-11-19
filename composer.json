@@ -5,13 +5,9 @@
 
 
     "repositories": [
-        {
-            "type": "vcs",
-            "url": "git@github.com:rvadym/language_switcher.git"
-        }
     ],
     "require": {
-        "atk4/atk4": "dev-master",
+        "atk4/atk4": "4.3.*@dev",
         "rvadym/language_switcher": "dev-master"
     }
 }
