@@ -2,10 +2,37 @@
 class Frontend extends ApiFrontend {
     function init() {
         parent::init();
+        $this->initAddons();
+
+
+//        $publicDir = dirname(@$_SERVER['SCRIPT_FILENAME']);
+//        $baseDir   = dirname($publicDir);
+//
+//
+//        //$parent_directory=/*dirname(*/dirname(@$_SERVER['SCRIPT_FILENAME'])/*)*/;
+//        var_dump($baseDir);
+//
+//        $this->pathfinder->public_location->addRelativeLocation('public/',
+//            array(
+//                'css'=>'css',
+//                'public'=>'.',
+//            )
+//        );
+//
+//        $this->api->pathfinder->base_location->defineContents(array(
+//            'docs'=>array('docs','doc'),  // Documentation (external)
+//            'content'=>'content',          // Content in MD format
+//            'addons'=>'vendor',
+//            'php'=>array('shared',),
+//        ));
+
+
 
         $this->add('jUI');
+    }
 
-        //var_dump(getcwd());
+    function initAddons() {
+
     }
 
     function initLayout(){
@@ -37,5 +64,22 @@ class Frontend extends ApiFrontend {
 //        ');
 
         parent::initLayout();
+    }
+
+    // translations
+    public $languages = false;
+    function _($string) {
+        // do not translate if only spases
+        if (trim($string) == '') return $string;
+
+        if (!$this->languages) {
+            $this->add('\rvadym\languages\Controller_SessionLanguageSwitcher',array(
+                'languages'=>array('en','ru'),
+                'default_language'=>'en',
+                'translation_dir_path'=>$this->api->pm->base_directory.'../translations',
+            ));
+            //$this->x_ls->setModel('Translations');
+        }
+        return $this->language_switcher->__($string);
     }
 }
