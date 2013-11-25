@@ -8,7 +8,10 @@
     },
     "autoload": {
         "psr-0": {
-            "": "lib/",
+            "": [
+                "lib/",
+                "admin/lib/"
+            ],
             "installer\\": "addons/"
         }
     },
