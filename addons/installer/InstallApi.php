@@ -19,7 +19,7 @@ class InstallApi {
 
     public static function postPackageInstall(Event $event) {
         $installedPackage = $event->getOperation()->getPackage();
-        self::memorizePackage($installedPackage);
+        self::memorizePackage($installedPackage,$event);
     }
     public static function postInstallCmd(Event $event) {
         foreach (self::$packages as $package) {
@@ -56,7 +56,7 @@ class InstallApi {
     }
 
 
-    private static function memorizePackage($installedPackage) {
+    private static function memorizePackage($installedPackage,Event $event) {
         $name               = $installedPackage->getPrettyName();
         $dirs               = explode('/',$name);
         $addon_full_path    = 'vendor/'.$name;
@@ -74,6 +74,7 @@ class InstallApi {
         }
 
         self::$packages[] = array(
+            'name'                 => $name,
             'path'                 => $name,
             'dirs'                 => $dirs,
             'addon_full_path'      => $addon_full_path,
