@@ -10,7 +10,8 @@
         "psr-0": {
             "": [
                 "lib/",
-                "admin/lib/"
+                "admin/lib/",
+                "tests/lib/"
             ],
             "installer\\": "addons/"
         }
