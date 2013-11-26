@@ -11,6 +11,7 @@
             "": [
                 "lib/",
                 "admin/lib/",
+                "cli/lib/",
                 "tests/lib/"
             ],
             "installer\\": "addons/"
