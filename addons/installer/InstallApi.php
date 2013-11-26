@@ -22,6 +22,40 @@ class InstallApi {
         self::memorizePackage($installedPackage,$event);
     }
     public static function postInstallCmd(Event $event) {
+        self::createSymLinks($event);
+        self::saveAddonsJSON(self::$packages,$event);
+    }
+
+
+    private static function memorizePackage($installedPackage,Event $event) {
+        $name               = $installedPackage->getPrettyName();
+        $dirs               = explode('/',$name);
+        $addon_full_path    = 'vendor/'.$name;
+        $addon_symlink_path = '../vendor/'.$name;
+
+        if ($name == 'atk4/atk4') {
+            $addon_public_path  = $addon_full_path . '/public/atk4';
+        } else {
+            $addon_public_path  = $addon_full_path . '/public';
+        }
+        if ($name == 'atk4/atk4') {
+            $addon_public_symlink = self::$project_public_path.'atk4';
+        } else {
+            $addon_public_symlink = self::$project_public_path.implode('_',$dirs);
+        }
+
+        self::$packages[] = array(
+            'name'                 => $name,
+            'path'                 => $name,
+            'dirs'                 => $dirs,
+            'addon_full_path'      => $addon_full_path,
+            'addon_symlink_path'   => $addon_symlink_path,
+            'addon_public_symlink' => $addon_public_symlink,
+            'addon_public_path'    => $addon_public_path,
+        );
+    }
+
+    private static function createSymLinks(Event $event, $add_path='') {
         foreach (self::$packages as $package) {
             if (self::fileExist($package['addon_public_path'])) {
                 $event->getIO()->write('   -> '.$package['path']);
@@ -55,34 +89,15 @@ class InstallApi {
         }
     }
 
-
-    private static function memorizePackage($installedPackage,Event $event) {
-        $name               = $installedPackage->getPrettyName();
-        $dirs               = explode('/',$name);
-        $addon_full_path    = 'vendor/'.$name;
-        $addon_symlink_path = '../vendor/'.$name;
-
-        if ($name == 'atk4/atk4') {
-            $addon_public_path  = $addon_full_path . '/public/atk4';
-        } else {
-            $addon_public_path  = $addon_full_path . '/public';
+    private static function saveAddonsJSON($arr,Event $event) {
+        $filename = 'atk4_addons.json';
+        if (self::fileExist($filename)) {
+            // read and merge
         }
-        if ($name == 'atk4/atk4') {
-            $addon_public_symlink = self::$project_public_path.'atk4';
-        } else {
-            $addon_public_symlink = self::$project_public_path.implode('_',$dirs);
-        }
-
-        self::$packages[] = array(
-            'name'                 => $name,
-            'path'                 => $name,
-            'dirs'                 => $dirs,
-            'addon_full_path'      => $addon_full_path,
-            'addon_symlink_path'   => $addon_symlink_path,
-            'addon_public_symlink' => $addon_public_symlink,
-            'addon_public_path'    => $addon_public_path,
-        );
+        file_put_contents($filename,json_encode($arr));
+        $event->getIO()->write("      $filename created");
     }
+
     private static function fileExist($path) {
         return ((file_exists($path) == 1)?true:false);
     }

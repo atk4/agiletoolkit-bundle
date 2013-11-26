@@ -4,7 +4,8 @@
     ],
     "require": {
         "atk4/atk4": "4.3.*@dev",
-        "rvadym/languages": "dev-master"
+        "rvadym/languages": "dev-master",
+        "rvadym/x_tinymce": "dev-master"
     },
     "autoload": {
         "psr-0": {

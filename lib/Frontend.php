@@ -19,12 +19,12 @@ class Frontend extends ApiFrontend {
 //            )
 //        );
 //
-//        $this->api->pathfinder->base_location->defineContents(array(
-//            'docs'=>array('docs','doc'),  // Documentation (external)
-//            'content'=>'content',          // Content in MD format
-//            'addons'=>'vendor',
-//            'php'=>array('shared',),
-//        ));
+        $this->api->pathfinder->base_location->defineContents(array(
+            'docs'=>array('docs','doc'),  // Documentation (external)
+            'content'=>'content',          // Content in MD format
+            'addons'=>'vendor',
+            'php'=>array('shared',),
+        ));
 
 
 
@@ -32,7 +32,33 @@ class Frontend extends ApiFrontend {
     }
 
     function initAddons() {
+        $base_path = $this->pathfinder->base_location->base_path;
+        $file = $base_path.'/atk4_addons.json';
+        if (file_exists($file)) {
+            $json = file_get_contents($file);
+            $objects = json_decode($json);
+            foreach ($objects as $obj) {
 
+                // Private location contains templates and php files YOU develop yourself
+                $this->__private_location = $this->api->pathfinder->addLocation(array(
+                    'docs' => 'docs',
+                    'php'  => 'lib',
+                    'template' => 'templates',
+                ))->setBasePath($obj->addon_full_path)
+                ;
+
+                $addon_public = str_replace('/','_',$obj->name);
+                // this public location cotains YOUR js, css and images, but not templates
+                $this->public_location = $this->api->pathfinder->addLocation(array(
+                    'js'=>'js',
+                    'css'=>'css',
+                    //'public'=>'.',  // use with < ?public? > tag in your template
+                ))
+                        ->setBasePath($obj->addon_full_path.'/public')
+                        ->setBaseURL($this->api->url('/').$addon_public)
+                ;
+            }
+        }
     }
 
     function initLayout(){
@@ -71,15 +97,16 @@ class Frontend extends ApiFrontend {
     function _($string) {
         // do not translate if only spases
         if (trim($string) == '') return $string;
-
+//
         if (!$this->languages) {
-            $this->add('\rvadym\languages\Controller_SessionLanguageSwitcher',array(
+            $this->add('rvadym\languages\Controller_SessionLanguageSwitcher',array(
                 'languages'=>array('en','ru'),
                 'default_language'=>'en',
                 'translation_dir_path'=>$this->api->pm->base_directory.'../translations',
             ));
-            //$this->x_ls->setModel('Translations');
+//            //$this->x_ls->setModel('Translations');
         }
-        return $this->language_switcher->__($string);
+        return $this->languages->__($string);
+        return $string;
     }
 }
