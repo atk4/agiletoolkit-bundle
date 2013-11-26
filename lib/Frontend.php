@@ -38,6 +38,15 @@ class Frontend extends ApiFrontend {
             $json = file_get_contents($file);
             $objects = json_decode($json);
             foreach ($objects as $obj) {
+//                $init_class_path = $base_path.'/'.$obj->addon_full_path.'/Init.php';
+//                if (file_exists($init_class_path)) {
+//                    include $init_class_path;
+//                    $class_name = str_replace('/','\\',$obj->name.'\\Init');
+//                    $init = $this->add($class_name,array(
+//                        'addon_obj' => $obj,
+//                    ));
+//                }
+
 
                 // Private location contains templates and php files YOU develop yourself
                 $this->__private_location = $this->api->pathfinder->addLocation(array(
@@ -93,20 +102,20 @@ class Frontend extends ApiFrontend {
     }
 
     // translations
-    public $languages = false;
-    function _($string) {
-        // do not translate if only spases
-        if (trim($string) == '') return $string;
-//
-        if (!$this->languages) {
-            $this->add('rvadym\languages\Controller_SessionLanguageSwitcher',array(
-                'languages'=>array('en','ru'),
-                'default_language'=>'en',
-                'translation_dir_path'=>$this->api->pm->base_directory.'../translations',
-            ));
-//            //$this->x_ls->setModel('Translations');
-        }
-        return $this->languages->__($string);
-        return $string;
-    }
+//    public $languages = false;
+//    function _($string) {
+//        // do not translate if only spases
+//        if (trim($string) == '') return $string;
+////
+//        if (!$this->languages) {
+//            $this->add('rvadym\languages\Controller_SessionLanguageSwitcher',array(
+//                'languages'=>array('en','ru'),
+//                'default_language'=>'en',
+//                'translation_dir_path'=>$this->api->pm->base_directory.'../translations',
+//            ));
+////            //$this->x_ls->setModel('Translations');
+//        }
+//        return $this->languages->__($string);
+//        return $string;
+//    }
 }

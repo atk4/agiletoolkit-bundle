@@ -90,9 +90,29 @@ class InstallApi {
     }
 
     private static function saveAddonsJSON($arr,Event $event) {
+        var_dump($arr);
+        echo '+++ --- +++';
         $filename = 'atk4_addons.json';
         if (self::fileExist($filename)) {
             // read and merge
+            $json = file_get_contents($filename);
+            $objects = json_decode($json);
+            foreach ($arr as $pk => $plugin) {
+                foreach ($objects as $ok => $obj) {
+                    var_dump($obj->name);
+                    var_dump($plugin['name']);
+                    echo '-----------------';
+                    if ($obj->name == $plugin['name']) {
+                        $objects[$ok] = json_decode(json_encode($plugin));
+                        unset($arr[$pk]);
+                    }
+                }
+            }
+            foreach ($arr as $pk => $plugin) {
+                $objects[] = json_decode(json_encode($plugin));
+            }
+            echo '=====>';
+            var_dump($objects);
         }
         file_put_contents($filename,json_encode($arr));
         $event->getIO()->write("      $filename created");
