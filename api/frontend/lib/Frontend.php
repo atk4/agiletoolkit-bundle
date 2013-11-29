@@ -1,9 +1,17 @@
 <?php
 class Frontend extends ApiFrontend {
+    public $api_public_path;
+    public $api_base_path;
     function init() {
         parent::init();
-        $this->add('jUI');
+        $this->api_public_path = dirname(@$_SERVER['SCRIPT_FILENAME']);
+        $this->api_base_path = dirname(dirname(@$_SERVER['SCRIPT_FILENAME']));
+
+
         $this->addLocations();
+        $this->addProjectLocations();
+        $this->addAddonsLocations();
+        $this->add('jUI');
         $this->initAddons();
     }
 
@@ -13,10 +21,30 @@ class Frontend extends ApiFrontend {
             'content'=>'content',          // Content in MD format
             'addons'=>'vendor',
             'php'=>array('shared',),
-        ));
+        ));//->setBasePath($this->api_base_path);
     }
 
-    function initAddons() {
+    function addProjectLocations() {
+//        $this->pathfinder->base_location->setBasePath($this->api_base_path);
+//        $this->pathfinder->base_location->setBaseUrl($this->url('/'));
+        $this->pathfinder->addLocation(
+            array(
+                'page'=>'page',
+                'php'=>'../shared',
+            )
+        )->setBasePath($this->api_base_path);
+        $this->pathfinder->addLocation(
+            array(
+                'js'=>'js',
+                'css'=>'css',
+            )
+        )
+                ->setBaseUrl($this->url('/'))
+                ->setBasePath($this->api_public_path)
+        ;
+    }
+
+    function addAddonsLocations() {
         $base_path = $this->pathfinder->base_location->getPath();
         $file = $base_path.'/atk4_addons.json';
         if (file_exists($file)) {
@@ -33,19 +61,28 @@ class Frontend extends ApiFrontend {
                         ->setBasePath($base_path.'/'.$obj->addon_full_path)
                 ;
 
-                $addon_public = str_replace('/','_',$obj->name);
+                $addon_public = $obj->addon_symlink_name;
                 // this public location cotains YOUR js, css and images, but not templates
                 /*$this->public_location = */
                 $this->api->pathfinder->addLocation(array(
-                    'js'   => 'js',
-                    'css'  => 'css',
+                    'js'     => 'js',
+                    'css'    => 'css',
+                    'public' => './',
                     //'public'=>'.',  // use with < ?public? > tag in your template
                 ))
-                        ->setBasePath($base_path.'/'.$obj->addon_full_path.'/public')
+                        ->setBasePath($this->api_base_path.'/'.$obj->addon_public_symlink)
                         ->setBaseURL($this->api->url('/').$addon_public) // $this->api->pm->base_path
                 ;
-
-
+            }
+        }
+    }
+    function initAddons() {
+        $base_path = $this->pathfinder->base_location->getPath();
+        $file = $base_path.'/atk4_addons.json';
+        if (file_exists($file)) {
+            $json = file_get_contents($file);
+            $objects = json_decode($json);
+            foreach ($objects as $obj) {
                 // init addon
                 $init_class_path = $base_path.'/'.$obj->addon_full_path.'/lib/Initiator.php';
                 if (file_exists($init_class_path)) {

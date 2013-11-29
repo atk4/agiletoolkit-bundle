@@ -1,6 +1,10 @@
 {
     "type": "project",
     "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/atk4/atk-default-theme"
+        }
     ],
     "require": {
         "atk4/atk4": "4.3.*@dev",

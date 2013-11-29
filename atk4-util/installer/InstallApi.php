@@ -47,8 +47,12 @@ class InstallApi {
         $dirs                  = explode('/',$name);
         $addon_full_path       = 'vendor/' . $name;
         $addon_symlink_goes_to = '../../../vendor/' . $name . '/public';
-        $addon_public_path     = $addon_full_path .       (($name == 'atk4/atk4')? '/public/atk4' : '/public');
-        $addon_public_symlink  = self::$api_public_path . (($name == 'atk4/atk4')? 'atk4'         : implode('_',$dirs));
+        if ($name == 'atk4/atk4') {
+            $addon_symlink_goes_to .= '/atk4';
+        }
+        $addon_public_path     = $addon_full_path . (($name == 'atk4/atk4')? '/public/atk4' : '/public');
+        $addon_symlink_name    =                    (($name == 'atk4/atk4')? 'atk4'         : implode('_',$dirs));
+        $addon_public_symlink  = self::$api_public_path . $addon_symlink_name;
 
         self::$packages[] = array(
             'name'                  => $name,
@@ -56,6 +60,7 @@ class InstallApi {
             'dirs'                  => $dirs,
             'addon_full_path'       => $addon_full_path,
             'addon_symlink_goes_to' => $addon_symlink_goes_to,
+            'addon_symlink_name'    => $addon_symlink_name,
             'addon_public_symlink'  => $addon_public_symlink,
             'addon_public_path'     => $addon_public_path,
         );
