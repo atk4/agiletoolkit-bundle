@@ -89,7 +89,6 @@ class InstallApi {
                 $installed = false;
                 $addon_sym_link = $api_path.$package['addon_public_symlink'];          // api/admin/  .  public/rvadym_languages
                 $event->getIO()->write('      Api addon sym link path = '.$addon_sym_link);
-                //var_dump(self::fileExist($addon_sym_link));
                 if (self::fileExist($addon_sym_link)) {                                // api/admin/public/rvadym_languages
                     $do_delete = $event->getIO()->ask("      File ".$addon_sym_link." already exist. Do you want to rewrite it?(Y/n) ");
                     if ($do_delete == 'Y') {
@@ -124,26 +123,25 @@ class InstallApi {
         if (self::fileExist($filename)) {
             // read and merge
             $json = file_get_contents($filename);
-            $objects = json_decode($json);
-            $new_objects_arr = array();
+            $objects = json_decode($json,true);
             foreach ($arr as $pk => $plugin) {
                 foreach ($objects as $ok => $obj) {
-                    if ($obj->name == $plugin['name']) {
-                        $objects[$ok] = json_decode(json_encode($plugin));
+                    if ($obj['name'] == $plugin['name']) {
+                        $objects[$ok] = $plugin;
                         unset($arr[$pk]);
                     }
                 }
             }
             foreach ($arr as $pk => $plugin) {
-                $objects[] = json_decode(json_encode($plugin));
+                $objects[] = $plugin;
             }
             // double check if addon exist
             $event->getIO()->write("     *** Check if some addons was deleted.");
             foreach ($objects as $ok => $obj) {
-                if (self::fileExist($obj->addon_full_path)) {
-                    $event->getIO()->write("      +++ Addon ".$obj->addon_full_path." exist.");
+                if (self::fileExist($obj['addon_full_path'])) {
+                    $event->getIO()->write("      +++ Addon ".$obj['addon_full_path']." exist.");
                 } else {
-                    $event->getIO()->write("      --- Addon ".$obj->addon_full_path." NOT exist.");
+                    $event->getIO()->write("      --- Addon ".$obj['addon_full_path']." NOT exist.");
                     unset($objects[$ok]);
                 }
             }
