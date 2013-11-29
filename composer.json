@@ -5,17 +5,19 @@
     "require": {
         "atk4/atk4": "4.3.*@dev",
         "rvadym/languages": "dev-master",
-        "rvadym/x_tinymce": "dev-master"
+        "rvadym/x_tinymce": "dev-master",
+        "atk4/atk-default-theme": "dev-master"
     },
     "autoload": {
         "psr-0": {
             "": [
-                "lib/",
-                "admin/lib/",
-                "cli/lib/",
-                "tests/lib/"
+                "api/admin/lib/",
+                "api/frontend/lib/",
+                "api/backend/lib/",
+                "api/cli/lib/",
+                "api/test/lib/"
             ],
-            "installer\\": "addons/"
+            "installer\\": "atk4-util/"
         }
     },
     "scripts": {
