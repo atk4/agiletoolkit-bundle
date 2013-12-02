@@ -1,5 +1,5 @@
 <?php
-class Backend extends ApiFrontend {
+class Backend extends Api_Admin {
     public $api_public_path;
     public $api_base_path;
     function init() {

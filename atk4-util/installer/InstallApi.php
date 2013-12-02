@@ -10,7 +10,7 @@ namespace installer;
 use \Composer\Script\Event;
 class InstallApi {
 
-    private static $api_path        = 'api/';
+    private static $api_path        = 'app/';
     private static $api_public_path = 'public/';
 
     static $packages = array();

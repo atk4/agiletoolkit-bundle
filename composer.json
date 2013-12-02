@@ -14,13 +14,7 @@
     },
     "autoload": {
         "psr-0": {
-            "": [
-                "api/admin/lib/",
-                "api/frontend/lib/",
-                "api/backend/lib/",
-                "api/cli/lib/",
-                "api/test/lib/"
-            ],
+            "": [],
             "installer\\": "atk4-util/"
         }
     },
