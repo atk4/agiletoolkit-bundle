@@ -4,6 +4,12 @@ class Admin extends ApiFrontend {
     public $api_base_path;
     function init() {
         parent::init();
+
+
+      if(defined('ATK_IDE_LOADED')) {
+         
+      }
+
         $this->api_public_path = dirname(@$_SERVER['SCRIPT_FILENAME']);
         $this->api_base_path = dirname(dirname(@$_SERVER['SCRIPT_FILENAME']));
 
@@ -19,7 +25,7 @@ class Admin extends ApiFrontend {
         $this->api->pathfinder->base_location->defineContents(array(
             'docs'=>array('docs','doc'),   // Documentation (external)
             'content'=>'content',          // Content in MD format
-            'addons'=>'vendor',
+            'addons'=>array('vendor','atk-ide/addons'),
             'php'=>array('shared',),
         ));//->setBasePath($this->api_base_path);
     }
