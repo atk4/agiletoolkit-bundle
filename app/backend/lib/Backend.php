@@ -1,38 +1,46 @@
 <?php
 class Backend extends Api_Admin {
-    public $api_public_path;
-    public $api_base_path;
+    public $app_public_path;
+    public $app_base_path;
+    public $addons;
     function init() {
         parent::init();
-        $this->api_public_path = dirname(@$_SERVER['SCRIPT_FILENAME']);
-        $this->api_base_path = dirname(dirname(@$_SERVER['SCRIPT_FILENAME']));
+        $this->app_public_path = dirname(@$_SERVER['SCRIPT_FILENAME']);
+        $this->app_base_path = dirname(dirname(@$_SERVER['SCRIPT_FILENAME']));
 
+//        $this->add('Controller_Compat42')/*->useOldTemplateTags()*/->useOldStyle()->useSMLite();
 
         $this->addLocations();
         $this->addProjectLocations();
         $this->addAddonsLocations();
         $this->add('jUI');
         $this->initAddons();
+
+
+        $this->api->menu->addMenuItem('','home');
+
+        $this->add('ide/Initiator');
     }
 
     function addLocations() {
         $this->api->pathfinder->base_location->defineContents(array(
-            'docs'=>array('docs','doc'),   // Documentation (external)
+            'docs'   =>array('docs','doc'),   // Documentation (external)
             'content'=>'content',          // Content in MD format
-            'addons'=>'vendor',
-            'php'=>array('shared',),
-        ));//->setBasePath($this->api_base_path);
+            'addons' =>array('vendor','../../atk4-ide/addons'),
+            'page'   =>array('vendor','../../atk4-ide/addons/ide/page'),
+            'php'    =>array('shared',),
+        ));//->setBasePath($this->app_base_path);
     }
 
     function addProjectLocations() {
-//        $this->pathfinder->base_location->setBasePath($this->api_base_path);
+//        $this->pathfinder->base_location->setBasePath($this->app_base_path);
 //        $this->pathfinder->base_location->setBaseUrl($this->url('/'));
         $this->pathfinder->addLocation(
             array(
                 'page'=>'page',
                 'php'=>'../shared',
             )
-        )->setBasePath($this->api_base_path);
+        )->setBasePath($this->app_base_path);
         $this->pathfinder->addLocation(
             array(
                 'js'=>'js',
@@ -40,22 +48,23 @@ class Backend extends Api_Admin {
             )
         )
                 ->setBaseUrl($this->url('/'))
-                ->setBasePath($this->api_public_path)
+                ->setBasePath($this->app_public_path)
         ;
     }
 
     function addAddonsLocations() {
         $base_path = $this->pathfinder->base_location->getPath();
-        $file = $base_path.'/atk4_addons.json';
+        $file = $base_path.'/../../atk4_addons.json';
         if (file_exists($file)) {
             $json = file_get_contents($file);
-            $objects = json_decode($json);
+            $objects = $this->addons = json_decode($json);
             foreach ($objects as $obj) {
                 // Private location contains templates and php files YOU develop yourself
                 /*$this->private_location = */
                 $this->api->pathfinder->addLocation(array(
                     'docs'      => 'docs',
                     'php'       => 'lib',
+                    'page'      => 'page',
                     'template'  => 'templates',
                 ))
                         ->setBasePath($base_path.'/'.$obj->addon_full_path)
@@ -70,7 +79,7 @@ class Backend extends Api_Admin {
                     'public' => './',
                     //'public'=>'.',  // use with < ?public? > tag in your template
                 ))
-                        ->setBasePath($this->api_base_path.'/'.$obj->addon_public_symlink)
+                        ->setBasePath($this->app_base_path.'/'.$obj->addon_public_symlink)
                         ->setBaseURL($this->api->url('/').$addon_public) // $this->api->pm->base_path
                 ;
             }

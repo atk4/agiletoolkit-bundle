@@ -5,6 +5,11 @@ class Admin extends ApiFrontend {
     function init() {
         parent::init();
 
+//        $return = array();
+//        $cmd = 'cd ../.. ; pwd ; php composer.phar install';
+//        exec($cmd,$return);
+//        var_dump($return);
+
 
       if(defined('ATK_IDE_LOADED')) {
          
@@ -19,13 +24,15 @@ class Admin extends ApiFrontend {
         $this->addAddonsLocations();
         $this->add('jUI');
         $this->initAddons();
+
+        $this->add('ide/Model_Test');
     }
 
     function addLocations() {
         $this->api->pathfinder->base_location->defineContents(array(
             'docs'=>array('docs','doc'),   // Documentation (external)
             'content'=>'content',          // Content in MD format
-            'addons'=>array('vendor','atk-ide/addons'),
+            'addons'=>array('vendor'),
             'php'=>array('shared',),
         ));//->setBasePath($this->api_base_path);
     }
@@ -37,6 +44,7 @@ class Admin extends ApiFrontend {
             array(
                 'page'=>'page',
                 'php'=>'../shared',
+                'addons'=>'../../atk4-ide/addons',
             )
         )->setBasePath($this->api_base_path);
         $this->pathfinder->addLocation(
