@@ -27,7 +27,7 @@ class Backend extends Api_Admin {
             'docs'   =>array('docs','doc'),   // Documentation (external)
             'content'=>'content',          // Content in MD format
             'addons' =>array('vendor','../../atk4-ide/addons'),
-            'page'   =>array('vendor','../../atk4-ide/addons/ide/page'),
+//            'page'   =>array('vendor','../../atk4-ide/addons/ide/page'),
             'php'    =>array('shared',),
         ));//->setBasePath($this->app_base_path);
     }
