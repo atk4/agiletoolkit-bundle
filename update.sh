@@ -1,5 +1,6 @@
 #!/bin/bash
 
+( cd vendor/atk4/atk4/; git pull )
 
 # Update dependencies
 if [ -f composer.json ]; then
