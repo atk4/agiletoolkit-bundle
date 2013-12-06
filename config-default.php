@@ -2,6 +2,8 @@
 $config['url_prefix']='?page=';
 $config['url_postfix']='';
 
+$config['js']['versions']['jqueryui']='1.11.master';
+
 // rvadym/language
 $config['rvadym']['languages']  = array(
     'languages'            => array('en','ru'),
