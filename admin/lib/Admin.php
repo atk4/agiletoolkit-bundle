@@ -25,7 +25,7 @@ class Admin extends Api_Admin {
     function addLocations() {
         $this->api->pathfinder->base_location->defineContents(array(
             'docs'   =>array('docs','doc'),   // Documentation (external)
-            'content'=>'content',          // Content in MD format
+            'content'=>'content',             // Content in MD format
             'addons' =>array('vendor','../atk4-ide/addons'),
             'page'   =>array('vendor','../atk4-ide/addons/ide/page'),
             'php'    =>array('shared',),
