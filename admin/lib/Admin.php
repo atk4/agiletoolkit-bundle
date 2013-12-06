@@ -1,12 +1,12 @@
 <?php
-class Backend extends Api_Admin {
+class Admin extends Api_Admin {
     public $app_public_path;
     public $app_base_path;
     public $addons;
     function init() {
         parent::init();
         $this->app_public_path = dirname(@$_SERVER['SCRIPT_FILENAME']);
-        $this->app_base_path = dirname(dirname(@$_SERVER['SCRIPT_FILENAME']));
+        $this->app_base_path = dirname(@$_SERVER['SCRIPT_FILENAME']);
 
 //        $this->add('Controller_Compat42')/*->useOldTemplateTags()*/->useOldStyle()->useSMLite();
 
@@ -26,8 +26,8 @@ class Backend extends Api_Admin {
         $this->api->pathfinder->base_location->defineContents(array(
             'docs'   =>array('docs','doc'),   // Documentation (external)
             'content'=>'content',          // Content in MD format
-            'addons' =>array('vendor','../../atk4-ide/addons'),
-//            'page'   =>array('vendor','../../atk4-ide/addons/ide/page'),
+            'addons' =>array('vendor','../atk4-ide/addons'),
+            'page'   =>array('vendor','../atk4-ide/addons/ide/page'),
             'php'    =>array('shared',),
         ));//->setBasePath($this->app_base_path);
     }

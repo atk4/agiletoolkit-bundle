@@ -13,3 +13,5 @@ composer.lock
 /atk4-ide/*
 .idea
 atk4_addons.json
+
+atk4-ide
