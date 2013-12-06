@@ -17,6 +17,9 @@ cp -aR shared dist/agiletoolkit/
 # Next - remove .git folders to conserve space, not sure if it will kill composer
 ( cd dist/agiletoolkit/ && find -name .git | xargs rm -rf )
 
+# Grab fresh certificate from agiletoolkit.org site
+echo -n | openssl s_client -connect agiletoolkit.org:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > dist/cert/agiletoolkit.cert
+
 # Somehow create PHAR here
 
 
@@ -31,3 +34,4 @@ cp -aR shared dist/agiletoolkit/
 
 
 # next , let's upload file to the server
+
