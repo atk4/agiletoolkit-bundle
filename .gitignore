@@ -6,6 +6,7 @@ doc/dbupdates/*.fail
 upload
 .DS_Store
 config.php
+config-auto.php
 composer.phar
 composer.lock
 /vendor/*
