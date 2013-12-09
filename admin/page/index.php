@@ -7,6 +7,16 @@
 class page_index extends Page{
     function init(){
         parent::init();
-        $this->add('LoremIpsum');
+
+
+        $m = $this->add('Model');
+        $m->setSource('Array',array('hello','world','blah'));
+
+        $m->addField('name');
+
+        $this->add('View_Box')
+            ->add('LoremIpsum');
+        //->add('Grid')->setModel($m);
+
     }
 }
