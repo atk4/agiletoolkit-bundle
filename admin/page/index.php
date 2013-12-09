@@ -14,9 +14,7 @@ class page_index extends Page{
 
         $m->addField('name');
 
-        $this->add('View_Box')
-            ->add('LoremIpsum');
-        //->add('Grid')->setModel($m);
+        $this->add('CRUD')->setModel($m);
 
     }
 }
