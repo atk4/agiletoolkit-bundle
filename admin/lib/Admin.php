@@ -6,7 +6,7 @@ class Admin extends Api_Admin {
     function init() {
         parent::init();
         $this->app_public_path = dirname(@$_SERVER['SCRIPT_FILENAME']);
-        $this->app_base_path = dirname(@$_SERVER['SCRIPT_FILENAME']);
+        $this->app_base_path = dirname($this->app_public_path);
 
 //        $this->add('Controller_Compat42')/*->useOldTemplateTags()*/->useOldStyle()->useSMLite();
 
@@ -26,10 +26,14 @@ class Admin extends Api_Admin {
         $this->api->pathfinder->base_location->defineContents(array(
             'docs'   =>array('docs','doc'),   // Documentation (external)
             'content'=>'content',             // Content in MD format
-            'addons' =>array('vendor','../atk4-ide/addons'),
-            'page'   =>array('vendor','../atk4-ide/addons/ide/page'),
+            'addons' =>array('vendor',),
+            'page'   =>array('vendor',),
             'php'    =>array('shared',),
         ));//->setBasePath($this->app_base_path);
+        $this->api->pathfinder->base_location->defineContents(array(
+            'addons' =>array('/atk4-ide.phar/addons'),
+            'page'   =>array('/atk4-ide.phar/addons/ide/page'),
+        ))->setBasePath('phar:');
     }
 
     function addProjectLocations() {
