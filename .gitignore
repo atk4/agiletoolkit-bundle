@@ -1,3 +1,4 @@
+dist/
 doc/dbupdates/*.ok
 doc/dbupdates/*.fail
 .htaccess

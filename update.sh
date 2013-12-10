@@ -1,7 +1,10 @@
 #!/bin/bash
 
+git pull
+
 ( cd vendor/atk4/atk4/; git pull )
 ( cd vendor/atk4/atk-default-theme/; git pull )
+( cd atk4-ide; git pull )
 
 # Update dependencies
 if [ -f composer.json ]; then
