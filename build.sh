@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash 
 
 # Read versio
 version=`cat vendor/atk4/atk4/VERSION`
@@ -17,20 +17,19 @@ cp -aR frontend dist/agiletoolkit/
 cp -a config-auto.php dist/agiletoolkit/
 cp -a config-default.php dist/agiletoolkit/
 cp -aR atk4-ide/public dist/agiletoolkit/atk4-ide/
+cp -a index.php dist/agiletoolkit/
 
 # Next - remove .git folders to conserve space, not sure if it will kill composer
 ( cd dist/agiletoolkit/ && rm -rf .git )
 
 # Grab fresh certificate from agiletoolkit.org site
-echo -n | openssl s_client -connect agiletoolkit.org:443  \
-  | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p'  \
-  > dist/agiletoolkit/cert/agiletoolkit.cert
+echo -n | openssl s_client -connect agiletoolkit.org:443  | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p'  > dist/agiletoolkit/cert/agiletoolkit.cert
 
 # create PHAR shell
 rm -rf dist/tmp
 mkdir -p dist/tmp
 cp -aR atk4-ide/atk4_phar/* dist/tmp
-cp -aR atk4-ide/{api,addons,template} dist/tmp/src
+cp -aR atk4-ide/{api,addons,template,init.php} dist/tmp/src
 ( cd dist/tmp; php create-phar.php ) 
 cp dist/tmp/build/atk4-ide.phar dist/agiletoolkit/
 
@@ -42,5 +41,15 @@ cp dist/tmp/build/atk4-ide.phar dist/agiletoolkit/
   agiletoolkit/ && cp agiletoolkit-${version}.tgz /www/agiletoolkit.org/public/dist/ )
 
 
+rm -rf dist
+
 # next , let's upload file to the server
 
+rm -rf /www/install-test/agiletoolkit/
+( cd /www/install-test/; tar -zxf /www/agiletoolkit.org/public/dist/agiletoolkit-${version}.tgz )
+
+# give rights so others can do it too
+chmod -R g+w /www/install-test/agiletoolkit/
+
+echo "Installed. Archive is http://www4.agiletoolkit.org/dist/agiletoolkit-${version}.tgz "
+echo "Test: http://install-test-399482.agiletoolkit.org/agiletoolkit/"
