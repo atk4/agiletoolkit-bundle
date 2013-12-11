@@ -18,5 +18,14 @@ class page_index extends Page{
 
         $this->add('View_Box')->add('LoremIpsum')->setLength(1,30);;
 
+        $menu = $this->add('View_Button')->set('Button with jQuery MENU')
+            ->addMenu();
+            $menu->addMenuItem('one');
+            $menu->addMenuItem('one');
+            $menu->addMenuItem('one');
+
+        $menu = $this->add('View_Button')->set('Button with jQuery MENU')
+            ->addPopover()
+            ->add('HelloWorld');
     }
 }
