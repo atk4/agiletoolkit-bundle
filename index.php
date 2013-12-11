@@ -5,13 +5,13 @@ if (file_exists('./atk4-ide.phar')) {
     require_once'phar://atk4-ide.phar/api/Controller/Config.php';
     require_once'phar://atk4-ide.phar/api/AgileToolkit/Installer.php';
 
-} /*elseif (file_exists('./atk4-ide') && is_dir('./atk4-ide')){
+} elseif (file_exists('./atk4-ide') && is_dir('./atk4-ide')){
     include_once'vendor/atk4/atk4/loader.php';
     include_once'atk4-ide/init.php';
     include_once'atk4-ide/api/Controller/Config.php';
     include_once'atk4-ide/api/AgileToolkit/Installer.php';
 
-}*/ else {
+} else {
     exit('Download atk4-ide.phar to use installer.');
 }
 
