@@ -5,8 +5,7 @@
  * Time: 14:57
  */
 class page_index extends Page{
-    function init(){
-        parent::init();
+    function initMainPage(){
 
 
         $m = $this->add('Model');
@@ -16,5 +15,22 @@ class page_index extends Page{
 
         $this->add('CRUD')->setModel($m);
 
+        $this->add('View_Box')->add('LoremIpsum')->setLength(1,30);;
+
+        $menu = $this->add('View_Button')->set('Button with jQuery MENU')
+            ->addMenu();
+            $menu->addMenuItem('one');
+            $menu->addMenuItem('one');
+            $menu->addMenuItem('one');
+
+        $menu = $this->add('View_Button')->set('Button with jQuery MENU')
+            ->addPopover()
+            ->add('HelloWorld');
+
+            $this->add('Button')->set('Dialog')->js('click')->univ()
+                ->dialogURL('Are you sure?',$this->api->url('./test'),array('width'=>400,'height'=>500)) ;
+    }
+    function page_test() {
+        $this->add('LoremIpsum');
     }
 }
