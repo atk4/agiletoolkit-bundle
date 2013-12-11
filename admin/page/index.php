@@ -16,5 +16,7 @@ class page_index extends Page{
 
         $this->add('CRUD')->setModel($m);
 
+        $this->add('View_Box')->add('LoremIpsum')->setLength(1,30);;
+
     }
 }
