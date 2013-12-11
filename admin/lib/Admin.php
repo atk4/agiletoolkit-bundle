@@ -19,7 +19,7 @@ class Admin extends Api_Admin {
 
         $this->api->menu->addMenuItem('','home');
 
-        $this->add('ide/Initiator');
+        //$this->add('ide/Initiator');
     }
 
     function addLocations() {
