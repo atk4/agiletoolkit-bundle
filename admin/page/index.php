@@ -5,8 +5,7 @@
  * Time: 14:57
  */
 class page_index extends Page{
-    function init(){
-        parent::init();
+    function initMainPage(){
 
 
         $m = $this->add('Model');
@@ -27,5 +26,11 @@ class page_index extends Page{
         $menu = $this->add('View_Button')->set('Button with jQuery MENU')
             ->addPopover()
             ->add('HelloWorld');
+
+            $this->add('Button')->set('Dialog')->js('click')->univ()
+                ->dialogURL('Are you sure?',$this->api->url('./test'),array('width'=>400,'height'=>500)) ;
+    }
+    function page_test() {
+        $this->add('LoremIpsum');
     }
 }
