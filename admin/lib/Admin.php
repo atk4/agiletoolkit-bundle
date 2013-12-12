@@ -16,7 +16,6 @@ class Admin extends Api_Admin {
         $this->add('jUI');
         $this->initAddons();
 
-
         $this->api->menu->addMenuItem('','home');
 
         $this->add('ide/Initiator');
@@ -33,6 +32,7 @@ class Admin extends Api_Admin {
         $this->api->pathfinder->base_location->defineContents(array(
             'addons' =>array('/atk4-ide.phar/addons'),
             'page'   =>array('/atk4-ide.phar/addons/ide/page'),
+            'php'    =>array('/atk4-ide.phar/api',),
         ))->setBasePath('phar:');
     }
 
