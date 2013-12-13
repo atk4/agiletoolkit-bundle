@@ -40,13 +40,13 @@ if [ -f composer.json ]; then
         ( cd vendor/atk4/atk4; git remote add composer git://github.com/atk4/atk4.git )
 
         touch config-auto.php
-
+        chmod 777 config-auto.php
     fi
 fi
 
 
 cat dependencies | while read dir path; do
-  if [ -d $dir ]; then
+  if [ -x $dir ]; then
     echo " => Updating $dir"
     ( cd $dir; git pull )
   else
