@@ -16,6 +16,8 @@ composer.lock
 .idea
 atk4_addons.json
 
+
+
+_build
 atk4-ide
 atk4-ide.phar
-atk4-ide
