@@ -1,16 +1,9 @@
 {
     "type": "project",
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/atk4/atk-default-theme"
-        }
-    ],
     "require": {
         "atk4/atk4": "4.3.*@dev",
         "rvadym/languages": "dev-master",
-        "rvadym/x_tinymce": "dev-master",
-        "atk4/atk-default-theme": "dev-master"
+        "rvadym/x_tinymce": "dev-master"
     },
     "autoload": {
         "psr-0": {
