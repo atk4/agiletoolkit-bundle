@@ -6,7 +6,9 @@ class Admin extends Api_Admin {
     function init() {
         parent::init();
         $this->app_public_path = dirname(@$_SERVER['SCRIPT_FILENAME']);
+        $this->project_base_url = (dirname(dirname($this->pm->base_path)));
         $this->app_base_path = dirname($this->app_public_path);
+        $this->project_base_path = dirname($this->app_base_path);
 
 //        $this->add('Controller_Compat42')/*->useOldTemplateTags()*/->useOldStyle()->useSMLite();
 
@@ -16,10 +18,10 @@ class Admin extends Api_Admin {
         $this->add('jUI');
         $this->initAddons();
 
-
         $this->api->menu->addMenuItem('','home');
 
-        //$this->add('ide/Initiator');
+        $this->add('ide/Initiator');
+        $this->p = $this->add('Controller_Police');
     }
 
     function addLocations() {
@@ -30,10 +32,25 @@ class Admin extends Api_Admin {
             'page'   =>array('vendor',),
             'php'    =>array('shared',),
         ));//->setBasePath($this->app_base_path);
-        $this->api->pathfinder->base_location->defineContents(array(
+
+        // phar
+        $this->api->pathfinder->addLocation(array(
             'addons' =>array('/atk4-ide.phar/addons'),
             'page'   =>array('/atk4-ide.phar/addons/ide/page'),
+            'php'    =>array('/atk4-ide.phar/api',),
         ))->setBasePath('phar:');
+
+        // no phar
+        $this->api->pathfinder->addLocation(array(
+            'addons' =>array('atk4-ide/addons'),
+            'page'   =>array('atk4-ide/addons/ide/page'),
+            'php'    =>array('atk4-ide/api',),
+        ))->setBasePath($this->api->pathfinder->base_location->getPath().'/..');
+
+        $this->api->pathfinder->atk_public
+          ->setBasePath($this->project_base_path.'/vendor/atk4/atk4/public/atk4')
+          ->setBaseURL($this->project_base_url.'/vendor/atk4/atk4/public/atk4')
+          ;
     }
 
     function addProjectLocations() {
@@ -110,5 +127,13 @@ class Admin extends Api_Admin {
 
     function initLayout(){
         parent::initLayout();
+        if ($_GET['debug']) {
+            $this->p->addDebugView($this->page_object);
+        }
+        try {
+            $this->p->guard();
+        } catch (Exception $e) {
+            $this->p->addErrorView($this->page_object);
+        }
     }
 }
