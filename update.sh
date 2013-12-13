@@ -1,6 +1,8 @@
 #!/bin/bash
 
 
+git pull
+
 # First, get composer there
 if [ -f composer.json ]; then
     if [ -f composer.phar ]; then
