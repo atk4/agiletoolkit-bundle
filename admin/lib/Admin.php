@@ -32,11 +32,20 @@ class Admin extends Api_Admin {
             'page'   =>array('vendor',),
             'php'    =>array('shared',),
         ));//->setBasePath($this->app_base_path);
+
+        // phar
         $this->api->pathfinder->addLocation(array(
             'addons' =>array('/atk4-ide.phar/addons'),
             'page'   =>array('/atk4-ide.phar/addons/ide/page'),
             'php'    =>array('/atk4-ide.phar/api',),
         ))->setBasePath('phar:');
+
+        // no phar
+        $this->api->pathfinder->addLocation(array(
+            'addons' =>array('atk4-ide/addons'),
+            'page'   =>array('atk4-ide/addons/ide/page'),
+            'php'    =>array('atk4-ide/api',),
+        ))->setBasePath($this->api->pathfinder->base_location->getPath());
 
         $this->api->pathfinder->atk_public
           ->setBasePath($this->project_base_path.'/vendor/atk4/atk4/public/atk4')
