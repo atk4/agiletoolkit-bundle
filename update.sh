@@ -14,9 +14,9 @@ if [ -f composer.json ]; then
         # If there are some folders around, link them
 
         CSS=""
-        [ -x ~/Sites/agiletoolkit-css ] && CSS="~/Sites/agiletoolkit-css"
+        [ -x ~/Sites/agiletoolkit-css ] && CSS="$HOME/Sites/agiletoolkit-css"
         [ -x /var/www/agiletoolkit-css ] && CSS="/var/www/agiletoolkit-css"
-        [ -x ~/www/agiletoolkit-css ] && CSS="~/www/agiletoolkit-css"
+        [ -x ~/www/agiletoolkit-css ] && CSS="$HOME/www/agiletoolkit-css"
 
         if [ "$CSS" ]; then
             echo "HEY, I found CSS library in $CSS, so I'm going to use it"
@@ -24,8 +24,8 @@ if [ -f composer.json ]; then
         fi
 
         ATK=""
-        [ -x ~/Sites/atk4 ] && CSS="~/Sites/atk4"
-        [ -x ~/Sites/atk43 ] && CSS="~/Sites/atk43"
+        [ -x ~/Sites/atk4 ] && ATK="$HOME/Sites/atk4"
+        [ -x ~/Sites/atk43 ] && ATK="$HOME/Sites/atk43"
         if [ "$ATK" ]; then
             echo "HEY, I found ATK library in $ATK, so I'm going to link it into vendor/atk4/atk4"
             rm -rf vendor/atk4/atk4
