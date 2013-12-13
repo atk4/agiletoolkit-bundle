@@ -6,7 +6,9 @@ class Admin extends Api_Admin {
     function init() {
         parent::init();
         $this->app_public_path = dirname(@$_SERVER['SCRIPT_FILENAME']);
+        $this->project_base_url = (dirname(dirname($this->pm->base_path)));
         $this->app_base_path = dirname($this->app_public_path);
+        $this->project_base_path = dirname($this->app_base_path);
 
 //        $this->add('Controller_Compat42')/*->useOldTemplateTags()*/->useOldStyle()->useSMLite();
 
@@ -34,6 +36,11 @@ class Admin extends Api_Admin {
             'addons' =>array('/atk4-ide.phar/addons'),
             'page'   =>array('/atk4-ide.phar/addons/ide/page'),
         ))->setBasePath('phar:');
+
+        $this->api->pathfinder->atk_public
+          ->setBasePath($this->project_base_path.'/vendor/atk4/atk4/public/atk4')
+          ->setBaseURL($this->project_base_url.'/vendor/atk4/atk4/public/atk4')
+          ;
     }
 
     function addProjectLocations() {

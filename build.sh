@@ -28,10 +28,13 @@ echo -n | openssl s_client -connect agiletoolkit.org:443  | sed -ne '/-BEGIN CER
 # create PHAR shell
 rm -rf dist/tmp
 mkdir -p dist/tmp
-cp -aR atk4-ide/atk4_phar/* dist/tmp
-cp -aR atk4-ide/{api,addons,template,init.php} dist/tmp/src
-( cd dist/tmp; php create-phar.php ) 
-cp dist/tmp/build/atk4-ide.phar dist/agiletoolkit/
+#cp -aR atk4-ide/atk4_phar/* dist/tmp
+#cp -aR atk4-ide/{api,addons,template,init.php} dist/tmp/src
+#( cd dist/tmp; php create-phar.php )
+( cd _build/atk4_phar; php create-phar.php ) 
+
+#cp dist/tmp/build/atk4-ide.phar dist/agiletoolkit/
+cp _build/atk4_phar/build/atk4-ide.phar dist/agiletoolkit/
 
 # Strip group write permssions as it makes people upset
 ( cd dist; chmod g-w -R agiletoolkit )
