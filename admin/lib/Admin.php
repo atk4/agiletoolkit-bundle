@@ -19,6 +19,7 @@ class Admin extends Api_Admin {
         $this->api->menu->addMenuItem('','home');
 
         $this->add('ide/Initiator');
+        $this->p = $this->add('Controller_Police');
     }
 
     function addLocations() {
@@ -29,7 +30,7 @@ class Admin extends Api_Admin {
             'page'   =>array('vendor',),
             'php'    =>array('shared',),
         ));//->setBasePath($this->app_base_path);
-        $this->api->pathfinder->base_location->defineContents(array(
+        $this->api->pathfinder->addLocation(array(
             'addons' =>array('/atk4-ide.phar/addons'),
             'page'   =>array('/atk4-ide.phar/addons/ide/page'),
             'php'    =>array('/atk4-ide.phar/api',),
@@ -110,5 +111,13 @@ class Admin extends Api_Admin {
 
     function initLayout(){
         parent::initLayout();
+        if ($_GET['debug']) {
+            $this->p->addDebugView($this->page_object);
+        }
+        try {
+            $this->p->guard();
+        } catch (Exception $e) {
+            $this->p->addErrorView($this->page_object);
+        }
     }
 }
