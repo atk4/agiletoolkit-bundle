@@ -45,7 +45,7 @@ class Admin extends Api_Admin {
             'addons' =>array('atk4-ide/addons'),
             'page'   =>array('atk4-ide/addons/ide/page'),
             'php'    =>array('atk4-ide/api',),
-        ))->setBasePath($this->api->pathfinder->base_location->getPath());
+        ))->setBasePath($this->api->pathfinder->base_location->getPath().'../');
 
         $this->api->pathfinder->atk_public
           ->setBasePath($this->project_base_path.'/vendor/atk4/atk4/public/atk4')
