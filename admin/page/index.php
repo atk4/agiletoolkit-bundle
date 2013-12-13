@@ -9,11 +9,14 @@ class page_index extends Page{
 
 
         $m = $this->add('Model');
-        $m->setSource('Array',array('hello','world','blah'));
-
+        $m->addField('id')->system(true);
         $m->addField('name');
+        $m->setSource('Session');//,array('hello','world','blah'));
 
-        $this->add('CRUD')->setModel($m);
+
+        $cr=$this->add('CRUD');
+        $cr->setModel($m);
+        //$cr->grid->addPaginator(5);
 
         $this->add('View_Box')->add('LoremIpsum')->setLength(1,30);;
 
@@ -25,7 +28,9 @@ class page_index extends Page{
 
         $menu = $this->add('View_Button')->set('Button with jQuery MENU')
             ->addPopover()
-            ->add('HelloWorld');
+            ->add('Lister')
+            ->setModel('Model')
+            ->setSource('Array',array('one','two','three','four'));
 
             $this->add('Button')->set('Dialog')->js('click')->univ()
                 ->dialogURL('Are you sure?',$this->api->url('./test'),array('width'=>400,'height'=>500)) ;
