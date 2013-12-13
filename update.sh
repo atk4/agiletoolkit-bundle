@@ -14,9 +14,9 @@ if [ -f composer.json ]; then
         # If there are some folders around, link them
 
         CSS=""
-        [ -f ~/Sites/agiletoolkit-css ] && CSS="~/Sites/agiletoolkit-css"
-        [ -f /var/www/agiletoolkit-css ] && CSS="/var/www/agiletoolkit-css"
-        [ -f ~/www/agiletoolkit-css ] && CSS="~/www/agiletoolkit-css"
+        [ -x ~/Sites/agiletoolkit-css ] && CSS="~/Sites/agiletoolkit-css"
+        [ -x /var/www/agiletoolkit-css ] && CSS="/var/www/agiletoolkit-css"
+        [ -x ~/www/agiletoolkit-css ] && CSS="~/www/agiletoolkit-css"
 
         if [ "$CSS" ]; then
             echo "HEY, I found CSS library in $CSS, so I'm going to use it"
@@ -24,8 +24,8 @@ if [ -f composer.json ]; then
         fi
 
         ATK=""
-        [ -f ~/Sites/atk4 ] && CSS="~/Sites/atk4"
-        [ -f ~/Sites/atk43 ] && CSS="~/Sites/atk43"
+        [ -x ~/Sites/atk4 ] && CSS="~/Sites/atk4"
+        [ -x ~/Sites/atk43 ] && CSS="~/Sites/atk43"
         if [ "$ATK" ]; then
             echo "HEY, I found ATK library in $ATK, so I'm going to link it into vendor/atk4/atk4"
             rm -rf vendor/atk4/atk4
@@ -38,6 +38,9 @@ if [ -f composer.json ]; then
         ( cd vendor/atk4/atk4; git remote rm composer )
         ( cd vendor/atk4/atk4; git checkout 4.3 )
         ( cd vendor/atk4/atk4; git remote add composer git://github.com/atk4/atk4.git )
+
+        touch config-auto.php
+
     fi
 fi
 
