@@ -25,6 +25,7 @@ class Admin extends Api_Admin {
     }
 
     function addLocations() {
+        /*
         $this->api->pathfinder->base_location->defineContents(array(
             'docs'   =>array('docs','doc'),   // Documentation (external)
             'content'=>'content',             // Content in MD format
@@ -51,6 +52,7 @@ class Admin extends Api_Admin {
           ->setBasePath($this->project_base_path.'/vendor/atk4/atk4/public/atk4')
           ->setBaseURL($this->project_base_url.'/vendor/atk4/atk4/public/atk4')
           ;
+         */
     }
 
     function addProjectLocations() {

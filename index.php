@@ -7,8 +7,8 @@ if (file_exists('./agiletoolkit-sandbox.phar')) {
     include_once'agiletoolkit-sandbox/init.php';
 
     # We need to manually load the API
-    include_once'agiletoolkit-sandbox/api/Controller/Config.php';
-    include_once'agiletoolkit-sandbox/api/AgileToolkit/Installer.php';
+    include_once'agiletoolkit-sandbox/lib/Controller/Config.php';
+    include_once'agiletoolkit-sandbox/lib/AgileToolkit/Installer.php';
 
 } else {
     exit('Download atk4-ide.phar to use installer.');
