@@ -18,10 +18,15 @@ class Admin extends Api_Admin {
         $this->add('jUI');
         $this->initAddons();
 
+        $this->db = $this->add('DB');
+        $this->db->connect();
+
         $this->api->menu->addMenuItem('','home');
 
-        $this->add('ide/Initiator');
+        $this->add('sandbox/Initiator');
         $this->p = $this->add('Controller_Police');
+
+        $this->add('rvadym\\blog\\Initiator');
     }
 
     function addLocations() {
@@ -56,12 +61,11 @@ class Admin extends Api_Admin {
     }
 
     function addProjectLocations() {
-//        $this->pathfinder->base_location->setBasePath($this->app_base_path);
-//        $this->pathfinder->base_location->setBaseUrl($this->url('/'));
         $this->pathfinder->addLocation(
             array(
                 'page'=>'page',
                 'php'=>'../shared',
+                'addons'=>array('../addons'),
             )
         )->setBasePath($this->app_base_path);
         $this->pathfinder->addLocation(
@@ -77,7 +81,7 @@ class Admin extends Api_Admin {
 
     function addAddonsLocations() {
         $base_path = $this->pathfinder->base_location->getPath();
-        $file = $base_path.'/../../atk4_addons.json';
+        $file = $base_path.'/../../sandbox_addons.json';
         if (file_exists($file)) {
             $json = file_get_contents($file);
             $objects = $this->addons = json_decode($json);
@@ -110,7 +114,7 @@ class Admin extends Api_Admin {
     }
     function initAddons() {
         $base_path = $this->pathfinder->base_location->getPath();
-        $file = $base_path.'/atk4_addons.json';
+        $file = $base_path.'/sandbox_addons.json';
         if (file_exists($file)) {
             $json = file_get_contents($file);
             $objects = json_decode($json);

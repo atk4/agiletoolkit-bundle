@@ -46,7 +46,7 @@ class TestApi extends ApiFrontend {
 
     function addAddonsLocations() {
         $base_path = $this->pathfinder->base_location->getPath();
-        $file = $base_path.'/atk4_addons.json';
+        $file = $base_path.'/sandbox_addons.json';
         if (file_exists($file)) {
             $json = file_get_contents($file);
             $objects = json_decode($json);
@@ -78,7 +78,7 @@ class TestApi extends ApiFrontend {
     }
     function initAddons() {
         $base_path = $this->pathfinder->base_location->getPath();
-        $file = $base_path.'/atk4_addons.json';
+        $file = $base_path.'/sandbox_addons.json';
         if (file_exists($file)) {
             $json = file_get_contents($file);
             $objects = json_decode($json);

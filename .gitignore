@@ -15,7 +15,11 @@ composer.lock
 /atk4-ide/*
 .idea
 atk4_addons.json
-
+sandbox_addons.json
+.composer
+addons/
+db
+test.txt
 
 
 atk4-ide

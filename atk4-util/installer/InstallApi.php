@@ -95,7 +95,8 @@ class InstallApi {
                 $addon_sym_link = $api_path.$package['addon_public_symlink'];          // api/admin/  .  public/rvadym_languages
                 $event->getIO()->write('      Api addon sym link path = '.$addon_sym_link);
                 if (self::fileExist($addon_sym_link)) {                                // api/admin/public/rvadym_languages
-                    $do_delete = $event->getIO()->ask("      File ".$addon_sym_link." already exist. Do you want to rewrite it?(Y/n) ");
+                    //$do_delete = $event->getIO()->ask("      File ".$addon_sym_link." already exist. Do you want to rewrite it?(Y/n) ");
+                    $do_delete = 'Y';
                     if ($do_delete == 'Y') {
                         if(is_link($addon_sym_link)) {
                             unlink($addon_sym_link);
@@ -123,7 +124,7 @@ class InstallApi {
     }
 
     private static function saveAddonsJSON($arr,Event $event) {
-        $filename = 'atk4_addons.json';
+        $filename = 'sandbox_addons.json';
         $save_json = $arr;
         if (self::fileExist($filename)) {
             // read and merge

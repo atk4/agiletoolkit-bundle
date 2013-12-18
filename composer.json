@@ -1,22 +1,35 @@
 {
-    "type": "project",
-    "require": {
-        "atk4/atk4": "4.3.*@dev",
-        "rvadym/languages": "dev-master",
-        "rvadym/x_tinymce": "dev-master"
-    },
-    "autoload": {
-        "psr-0": {
-            "": [],
-            "installer\\": "atk4-util/"
-        }
-    },
-    "scripts": {
-        "post-package-install": [
-            "installer\\InstallApi::postPackageInstall"
-        ],
-        "post-install-cmd": [
-            "installer\\InstallApi::postInstallCmd"
-        ]
+  "type":"project",
+  "require":{
+    "atk4\/atk4":"4.3.*@dev",
+    "rvadym\/languages":"dev-master",
+    "rvadym\/x_tinymce":"dev-master",
+    "rvadym\/blog":"dev-master"
+  },
+  "autoload":{
+    "psr-0":{
+      "":[
+        
+      ],
+      "installer":"atk4-util"
     }
+  },
+  "scripts":{
+    "post-package-install":[
+      "installer\\InstallApi::postPackageInstall"
+    ],
+    "post-install-cmd":[
+      "installer\\InstallApi::postInstallCmd"
+    ]
+  },
+  "repositories":[
+    {
+      "type":"vcs",
+      "url":"git@github.com:rvadym\/blog.git"
+    },
+    {
+      "type":"vcs",
+      "url":"git@github.com:rvadym\/blog.git"
+    }
+  ]
 }
