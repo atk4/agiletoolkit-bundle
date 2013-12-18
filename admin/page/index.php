@@ -51,16 +51,16 @@ class page_index extends Page {
 }
 
 class Controller_Bla extends AbstractController {
+    function init() {
+        parent::init();
+        $this->i = $this->add('sandbox/Controller_InstallAddon');
+    }
     function addButton($view) {
         $b = $view->add('Button')->set('Install Blog');;
         $b->js('click')->univ()->ajaxec($this->api->url(null,array('install'=>1)));
         if ($_GET['install']) {
-            $this->installAddon();
+            $this->i->installAddon($_GET['install']);
             $view->js()->univ()->alert('----')->execute();
         }
-    }
-    function installAddon() {
-        $i = $this->add('sandbox/Controller_InstallAddon');
-        $i->installAddon('bla');
     }
 }
