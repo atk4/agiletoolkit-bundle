@@ -25,8 +25,6 @@ class Admin extends Api_Admin {
 
         $this->add('sandbox/Initiator');
         $this->p = $this->add('Controller_Police');
-
-        $this->add('rvadym\\blog\\Initiator');
     }
 
     function addLocations() {
@@ -65,7 +63,7 @@ class Admin extends Api_Admin {
             array(
                 'page'=>'page',
                 'php'=>'../shared',
-                'addons'=>array('../addons'),
+                //'addons'=>array('../addons'),
             )
         )->setBasePath($this->app_base_path);
         $this->pathfinder->addLocation(

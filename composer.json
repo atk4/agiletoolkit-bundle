@@ -26,10 +26,6 @@
     {
       "type":"vcs",
       "url":"git@github.com:rvadym\/blog.git"
-    },
-    {
-      "type":"vcs",
-      "url":"git@github.com:rvadym\/blog.git"
     }
   ]
 }
