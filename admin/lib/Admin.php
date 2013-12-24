@@ -22,6 +22,7 @@ class Admin extends Api_Admin {
         $this->db->connect();
 
         $this->api->menu->addMenuItem('','home');
+        $this->api->menu->addMenuItem('install','Install Addon');
 
         $this->add('sandbox/Initiator');
         $this->p = $this->add('Controller_Police');
