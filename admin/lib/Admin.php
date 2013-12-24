@@ -14,7 +14,6 @@ class Admin extends Api_Admin {
 
         $this->addProjectLocations();
         $this->addAddonsLocations();
-        $this->add('jUI');
         $this->initAddons();
 
         $this->db = $this->add('DB');
@@ -23,7 +22,6 @@ class Admin extends Api_Admin {
         $this->api->menu->addMenuItem('','home');
 
         $this->add('sandbox/Initiator');
-        $this->p = $this->add('Controller_Police');
     }
 
 
@@ -101,12 +99,12 @@ class Admin extends Api_Admin {
     function initLayout(){
         parent::initLayout();
         if ($_GET['debug']) {
-            $this->p->addDebugView($this->page_object);
+            $this->police->addDebugView($this->page_object);
         }
         try {
-            $this->p->guard();
+            $this->police->guard();
         } catch (Exception $e) {
-            $this->p->addErrorView($this->page_object);
+            $this->police->addErrorView($this->page_object);
         }
     }
 }
