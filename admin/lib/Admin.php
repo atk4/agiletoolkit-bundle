@@ -47,10 +47,13 @@ class Admin extends Api_Admin {
             // init addon
             $init_class_path = $base_path.'/../'.$addon->get('addon_full_path').'/lib/Initiator.php';
             if (file_exists($init_class_path)) {
+                //var_dump($init_class_path.' exist'); echo '<hr>';
                 $class_name = str_replace('/','\\',$addon->get('name').'\\Initiator');
                 $init = $this->add($class_name,array(
                     'addon_obj' => $addon,
                 ));
+            } else {
+                //var_dump($init_class_path.' NOT exist'); echo '<hr>';
             }
         }
     }
