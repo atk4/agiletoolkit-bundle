@@ -10,8 +10,6 @@ class Admin extends Api_Admin {
 
         $this->api->menu->addMenuItem('','home');
         $this->api->menu->addMenuItem('install','Install Addon');
-
-        $this->add('sandbox/Initiator');
     }
 
 
@@ -44,7 +42,6 @@ class Admin extends Api_Admin {
     function initAddons() {
         $this->addAddonsLocations();
         $this->addProjectLocations();
-
         $base_path = $this->pathfinder->base_location->getPath();
         foreach ($this->getSndBoxAddonReader()->getReflections() as $addon) {
             // init addon
