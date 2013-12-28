@@ -5,11 +5,10 @@ class Admin extends Api_Admin {
     public $addons;
     function init() {
         parent::init();
-        $this->db = $this->add('DB');
-        $this->db->connect();
-
         $this->api->menu->addMenuItem('','home');
         $this->api->menu->addMenuItem('install','Install Addon');
+
+        //$this->add('rvadym\blog\Initiator');
     }
 
 
@@ -24,7 +23,7 @@ class Admin extends Api_Admin {
             array(
                 'page'=>'page',
                 'php'=>'../shared',
-                'addons'=>array('../vendor'),
+                'addons'=>array('../vendor','../addons'),
             )
         )
                 ->setBasePath($this->app_base_path)
