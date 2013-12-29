@@ -29,11 +29,12 @@ echo -n | openssl s_client -connect agiletoolkit.org:443  | sed -ne '/-BEGIN CER
 rm -rf dist/tmp
 mkdir -p dist/tmp
 cp -aR agiletoolkit-sandbox/phar_skel/* dist/tmp
-cp -aR agiletoolkit-sandbox/{api,addons,template,init.php} dist/tmp/src
+cp -aR agiletoolkit-sandbox/{lib,addons,template,init.php} dist/tmp/src
 ( cd dist/tmp; php create-phar.php )
 #( cd _build/atk4_phar; php create-phar.php ) 
 
 cp dist/tmp/agiletoolkit-sandbox.phar dist/agiletoolkit/
+cp dist/tmp/agiletoolkit-sandbox.phar /www/agiletoolkit.org/public/dist/
 #cp _build/atk4_phar/build/atk4-ide.phar dist/agiletoolkit/
 
 # Strip group write permssions as it makes people upset
@@ -49,7 +50,11 @@ rm -rf dist
 # next , let's upload file to the server
 
 rm -rf /www/install-test/agiletoolkit/
-( cd /www/install-test/; tar -zxf /www/agiletoolkit.org/public/dist/agiletoolkit-${version}.tgz )
+( 
+  cd /www/install-test/; 
+  tar -zxf /www/agiletoolkit.org/public/dist/agiletoolkit-${version}.tgz 
+  chmod 777 config-auto.php
+)
 
 # give rights so others can do it too
 chmod -R g+w /www/install-test/agiletoolkit/
