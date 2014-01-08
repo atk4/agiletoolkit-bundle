@@ -10,7 +10,8 @@ namespace installer;
 use \Composer\Script\Event;
 class InstallApi {
 
-    private static $api_path        = 'app/';
+    //private static $api_path        = 'app/';
+    private static $api_path        = '';
     private static $api_public_path = 'public/';
 
     static $packages = array();
@@ -46,7 +47,8 @@ class InstallApi {
         $name                  = $installedPackage->getPrettyName();
         $dirs                  = explode('/',$name);
         $addon_full_path       = 'vendor/' . $name;
-        $addon_symlink_goes_to = '../../../vendor/' . $name . '/public';
+        //$addon_symlink_goes_to = '../../../vendor/' . $name . '/public';
+        $addon_symlink_goes_to = '../../vendor/' . $name . '/public';
         if ($name == 'atk4/atk4') {
             $addon_symlink_goes_to .= '/atk4';
         }
@@ -68,7 +70,8 @@ class InstallApi {
 
 
     private static function getApiList() {
-        $apis = scandir(self::$api_path); array_shift($apis); array_shift($apis);
+        //$apis = scandir(self::$api_path); array_shift($apis); array_shift($apis);
+        $apis = array('admin','frontend');
         self::$apis = $apis;
     }
     private static function createSymLinks(Event $event) {

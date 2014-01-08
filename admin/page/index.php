@@ -8,12 +8,9 @@ class page_index extends Page {
 
     function init() {
         parent::init();
-        $this->contrl = $this->add('Controller_Bla');
     }
 
     function initMainPage(){
-
-        $this->contrl->addButton($this);
 
       $this->add('Text')->set('CSS used: '.$this->api->locateURL('css','style.css'));
 
@@ -45,18 +42,8 @@ class page_index extends Page {
         $this->add('Button')->set('Dialog')->js('click')->univ()
             ->dialogURL('Are you sure?',$this->api->url('./test'),array('width'=>400,'height'=>500)) ;
     }
-    function page_test() {
-        $this->add('LoremIpsum');
-    }
-}
-
-class Controller_Bla extends AbstractController {
-    function init() {
-        parent::init();
-    }
-    function addButton($view) {
-        $self = $this;
-        $trace_view = $view->add('View')->set('')->addStyle('font-size','11px');
-
+    function page_install() {
+        $this->i = $this->add('sandbox/Controller_InstallAddon');
+        $this->i->addForm($this);
     }
 }
