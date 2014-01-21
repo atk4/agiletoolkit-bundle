@@ -33,11 +33,13 @@ class page_index extends Page {
             $menu->addMenuItem('one');
             $menu->addMenuItem('one');
 
+            /*
         $menu = $this->add('View_Button')->set('Button with jQuery MENU')
             ->addPopover()
             ->add('Lister')
             ->setModel('Model')
             ->setSource('Array',array('one','two','three','four'));
+             */
 
         $this->add('Button')->set('Dialog')->js('click')->univ()
             ->dialogURL('Are you sure?',$this->api->url('./test'),array('width'=>400,'height'=>500)) ;

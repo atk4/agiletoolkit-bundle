@@ -14,6 +14,7 @@ class Admin extends Api_Admin {
     }
 
     function addAddonsLocations() {
+        return;
         $base_path = $this->pathfinder->base_location->getPath();
         foreach ($this->getSndBoxAddonReader()->getReflections() as $addon) {
             // Private location contains templates and php files YOU develop yourself
