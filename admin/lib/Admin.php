@@ -11,6 +11,7 @@ class Admin extends Api_Admin {
         //     ->useSMLite();
 
         $this->api->menu->addMenuItem('','home');
+//        var_dump($this->no_sendbox);
     }
 
     function addAddonsLocations() {

@@ -3,7 +3,8 @@
   "require":{
     "atk4\/atk4":"4.3.*@dev",
     "rvadym\/languages":"dev-master",
-    "rvadym\/x_tinymce":"dev-master"
+    "rvadym\/x_tinymce":"dev-master",
+    "rvadym\/blog":"dev-master"
   },
   "autoload":{
     "psr-0":{
@@ -28,5 +29,9 @@
     ]
   },
   "repositories":[
+    {
+      "type":"vcs",
+      "url":"git@github.com:rvadym\/blog.git"
+    }
   ]
 }
