@@ -2,7 +2,7 @@
 if (file_exists('./agiletoolkit-sandbox.phar')) {
     require_once "./agiletoolkit-sandbox.phar";
 
-    include_once'phar://agiletoolkit-sandbox.phar/lib/Controller/Config.php';
+    include_once'phar://agiletoolkit-sandbox.phar/addons/sandbox/lib/Controller/Config.php';
     include_once'phar://agiletoolkit-sandbox.phar/lib/AgileToolkit/Installer.php';
 } elseif (file_exists('./agiletoolkit-sandbox') && is_dir('./agiletoolkit-sandbox')){
 
@@ -10,7 +10,7 @@ if (file_exists('./agiletoolkit-sandbox.phar')) {
     include_once'agiletoolkit-sandbox/init.php';
 
     # We need to manually load the API
-    include_once'agiletoolkit-sandbox/lib/Controller/Config.php';
+    include_once'agiletoolkit-sandbox/addons/sandbox/lib/Controller/Config.php';
     include_once'agiletoolkit-sandbox/lib/AgileToolkit/Installer.php';
 
 } else {
