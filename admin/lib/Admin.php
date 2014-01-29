@@ -11,13 +11,17 @@ class Admin extends Api_Admin {
         //     ->useSMLite();
 
         $this->api->menu->addMenuItem('','home');
-//        var_dump($this->no_sendbox);
+
+
+        if ($_GET['debug'] == 631) {
+            $this->sandbox->police->addDebugView($this->api->layout);
+        }
     }
 
     function addAddonsLocations() {
-        return;
+        $a = $this->add('sandbox\\Controller_InstallAddon');
         $base_path = $this->pathfinder->base_location->getPath();
-        foreach ($this->getSndBoxAddonReader()->getReflections() as $addon) {
+        foreach ($a->getSndBoxAddonReader()->getReflections() as $addon) {
             // Private location contains templates and php files YOU develop yourself
             /*$this->private_location = */
             $this->api->pathfinder->addLocation(array(
@@ -39,7 +43,7 @@ class Admin extends Api_Admin {
                 'public' => './',
                 //'public'=>'.',  // use with < ?public? > tag in your template
             ))
-                    ->setBasePath($base_path.$this->app_base_path.'/'.$addon->get('addon_public_symlink'))
+                    ->setBasePath($base_path.'/'.$addon->get('addon_public_symlink'))
                     ->setBaseURL($this->api->url('/').$addon_public) // $this->api->pm->base_path
             ;
         }
