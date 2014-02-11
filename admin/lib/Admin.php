@@ -4,17 +4,20 @@ class Admin extends Api_Admin {
     function init() {
         parent::init();
 
+        $this->api->pathfinder->addLocation(array(
+            'addons'    => array('addons'),
+        ))
+                ->setBasePath($this->pathfinder->base_location->getPath().'/..')
+        ;
+
+        $this->api->menu->addMenuItem('','home');
+    }
+}
+
+
+
         // For improved compatibility with Older Toolkit. See Documentation.
         // $this->add('Controller_Compat42')
         //     ->useOldTemplateTags()
         //     ->useOldStyle()
         //     ->useSMLite();
-
-        $this->api->menu->addMenuItem('','home');
-
-
-        if ($_GET['debug'] == 631) {
-            $this->sandbox->police->addDebugView($this->api->layout);
-        }
-    }
-}
