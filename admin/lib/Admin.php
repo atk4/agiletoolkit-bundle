@@ -5,7 +5,7 @@ class Admin extends Api_Admin {
         parent::init();
 
         $this->api->pathfinder->addLocation(array(
-            'addons'    => array('addons'),
+            'addons'    => array('addons','vendor'),
         ))
                 ->setBasePath($this->pathfinder->base_location->getPath().'/..')
         ;
