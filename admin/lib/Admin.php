@@ -1,5 +1,5 @@
 <?php
-class Admin extends Api_Admin {
+class Admin extends App_Admin {
 
     function init() {
         parent::init();
