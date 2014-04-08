@@ -35,7 +35,7 @@ cp -aR agiletoolkit-sandbox/{lib,addons,template,init.php} dist/tmp/src
 
 
 #cp dist/tmp/agiletoolkit-sandbox.phar dist/agiletoolkit/
-#cp dist/tmp/agiletoolkit-sandbox.phar /www/agiletoolkit.org/public/dist/
+cp dist/tmp/agiletoolkit-sandbox.phar /www/agiletoolkit.org/public/dist/
 #cp _build/atk4_phar/build/atk4-ide.phar dist/agiletoolkit/
 
 # Strip group write permssions as it makes people upset

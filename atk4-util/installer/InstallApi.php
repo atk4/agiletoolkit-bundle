@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by JetBrains PhpStorm.
  * User: vadym
@@ -7,7 +8,9 @@
  * To change this template use File | Settings | File Templates.
  */
 namespace installer;
+
 use \Composer\Script\Event;
+
 class InstallApi {
 
     //private static $api_path        = 'app/';
@@ -21,13 +24,12 @@ class InstallApi {
         $installedPackage = $event->getOperation()->getPackage();
         self::memorizePackage($installedPackage,$event);
     }
+    
     public static function postInstallCmd(Event $event) {
         self::getApiList();
         self::createSymLinks($event);
         self::saveAddonsJSON(self::$packages,$event);
     }
-
-
 
     /*
         array(7) {
@@ -68,19 +70,19 @@ class InstallApi {
         );
     }
 
-
     private static function getApiList() {
         //$apis = scandir(self::$api_path); array_shift($apis); array_shift($apis);
         $apis = array('admin','frontend');
         self::$apis = $apis;
     }
+
     private static function createSymLinks(Event $event) {
         foreach (self::$apis as $api) {
             self::createSymLinksForAPI($event, $api);
         }
     }
+    
     private static function createSymLinksForAPI(Event $event, $api) {
-
         $api_path        = self::$api_path . $api . '/';         // api/admin/
         $api_public_path = $api_path . self::$api_public_path;   // api/admin/public/
 
@@ -222,4 +224,5 @@ class InstallApi {
 
         return $result;
     }
+
 }
