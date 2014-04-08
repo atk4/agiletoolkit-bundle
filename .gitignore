@@ -1,4 +1,5 @@
 dist/
+/phar-packer
 doc/dbupdates/*.ok
 doc/dbupdates/*.fail
 .htaccess
