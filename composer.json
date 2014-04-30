@@ -15,16 +15,16 @@
     }
   },
   "scripts":{
-    "post-package-install":[
+    "commented-post-package-install":[
       "installer\\InstallApi::postPackageInstall"
     ],
-    "post-install-cmd":[
+    "comment-post-install-cmd":[
       "installer\\InstallApi::postInstallCmd"
     ],
-    "post-package-update":[
+    "commentpost-package-update":[
       "installer\\InstallApi::postPackageInstall"
     ],
-    "post-update-cmd":[
+    "comment-post-update-cmd":[
       "installer\\InstallApi::postInstallCmd"
     ]
   },

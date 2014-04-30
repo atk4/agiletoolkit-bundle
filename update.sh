@@ -7,7 +7,7 @@ git pull
 if [ -f composer.json ]; then
     if [ -f composer.phar ]; then
         echo "== STEP 1 == Updating composer dependencies"
-        sudo php composer.phar self-update
+        php composer.phar self-update
         php composer.phar update
     else
         echo "== STEP 1 == Installing composer dependencies"
