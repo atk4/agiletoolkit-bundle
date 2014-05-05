@@ -4,7 +4,8 @@
     "atk4\/atk4":"4.3.*@dev",
     "rvadym\/languages":"dev-master",
     "rvadym\/x_tinymce":"dev-master",
-    "rvadym\/blog":"dev-master"
+    "rvadym\/blog":"dev-master",
+    "educoder\/pest":"1.0.0"
   },
   "autoload":{
     "psr-0":{
