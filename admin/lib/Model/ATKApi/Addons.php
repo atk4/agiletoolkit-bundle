@@ -15,6 +15,8 @@ class Model_ATKApi_Addons extends Model_ATKApi {
         $this->addField('is_paid');
         $this->addField('descr');
         $this->addField('version');
+
+        // $this->controller->sendRawRequest($this, 'plugins');
     }
 
 }
