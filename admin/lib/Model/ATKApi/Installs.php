@@ -5,6 +5,8 @@ class Model_ATKApi_Installs extends Model_ATKApi {
     public $collection_uri = 'installs';
     public $element_uri    = 'installs/{$id}';
 
+    public $id_field = 'installation_hash';
+
     function init() {
         parent::init();
 
@@ -16,8 +18,8 @@ class Model_ATKApi_Installs extends Model_ATKApi {
         $this->addField('city');
         $this->addField('country');
         $this->addField('os_short');
-        $this->addField('cert_issued_dts');
-        $this->addField('cert_expires_dts');
+        $this->addField('cert_issued_dts')->type('datetime');
+        $this->addField('cert_expires_dts')->type('datetime');
     }
 
 }

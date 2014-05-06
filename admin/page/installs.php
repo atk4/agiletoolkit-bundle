@@ -11,8 +11,10 @@ class page_installs extends Page {
     }
 
     function page_index() {
-        $cr = $this->add('Grid');
+        $cr = $this->add('CRUD');
         $m = $cr->setModel('Model_ATKApi_Installs');
+        // $vv = $this->add('Model_ATKApi_Installs');
+        // var_dump($vv->getRows());
     }
 
 }
