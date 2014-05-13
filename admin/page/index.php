@@ -12,7 +12,7 @@ class page_index extends Page {
 
     function initMainPage(){
 
-      $this->add('Text')->set('CSS used: '.$this->api->locateURL('css','style.css'));
+      $this->add('Text')->set('CSS used: '.$this->api->locateURL('css','theme.css'));
 
 
         $m = $this->add('Model');
