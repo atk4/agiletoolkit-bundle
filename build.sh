@@ -41,6 +41,20 @@ cp dist/tmp/agiletoolkit-sandbox.phar /www/agiletoolkit.org/public/dist/
 # Strip group write permssions as it makes people upset
 ( cd dist; chmod g-w -R agiletoolkit )
 
+{
+  cat vendor/atk4/atk4/VERSION
+  echo -n "Branch: "
+  (cd vendor/atk4/atk4/; git branch)
+  echo "Build: `date '+%Y-%m-%d'`"
+
+  echo -n "Sandbox Revision: "
+  (cd agiletoolkit-sandbox/; git rev-list --count HEAD)
+
+  echo -n "ATK4 Revision: "
+  (cd vendor/atk4/atk4/; git rev-list --count HEAD)
+} >> dist/VERSION
+
+
 # tar, but make sure 
 ( cd dist; tar --no-same-owner --no-xattrs -czf agiletoolkit-${version}.tgz \
   agiletoolkit/ && cp agiletoolkit-${version}.tgz /www/agiletoolkit.org/public/dist/ )
