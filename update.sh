@@ -7,12 +7,12 @@ git pull
 if [ -f composer.json ]; then
     if [ -f composer.phar ]; then
         echo "== STEP 1 == Updating composer dependencies"
-        php composer.phar self-update
-        php composer.phar update
+        sudo php composer.phar self-update
+        sudo php composer.phar update
     else
         echo "== STEP 1 == Installing composer dependencies"
         curl -sS https://getcomposer.org/installer | php
-        php composer.phar install
+        sudo php composer.phar install
 
         # If there are some folders around, link them
         echo "== STEP 2 == Linking files"
