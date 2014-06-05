@@ -13,11 +13,14 @@ class page_index extends Page {
 
     function initMainPage(){
         // $this->add('Text')->set('CSS used: ' . $this->api->locateURL('css', 'theme.css'));
-        
+
         $m = $this->add('Model');
         $m->addField('id')->system(true);
         $m->addField('name');
         $m->setSource('Session');//,array('hello','world','blah'));
+
+
+        $this->app->sandbox->getPolice()->harakiri('Your certificate could not be updated.','org');
 
         $cr = $this->add('CRUD');
         $cr->setModel($m);

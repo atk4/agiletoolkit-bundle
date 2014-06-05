@@ -20,6 +20,8 @@ class Model_ATKApi_Installs extends Model_ATKApi {
         $this->addField('os_short');
         $this->addField('cert_issued_dts')->type('datetime');
         $this->addField('cert_expires_dts')->type('datetime');
+
+        $this->addField('repository');
     }
 
 }
