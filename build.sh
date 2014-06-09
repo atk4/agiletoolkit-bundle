@@ -22,20 +22,27 @@ cp -a index.php dist/agiletoolkit/
 # Next - remove .git folders to conserve space, not sure if it will kill composer
 ( cd dist/agiletoolkit/ && rm -rf .git )
 
-# Grab fresh certificate from agiletoolkit.org site
-echo -n | openssl s_client -connect agiletoolkit.org:443  | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p'  > dist/agiletoolkit/cert/agiletoolkit.cert
-
 # create PHAR shell
 rm -rf dist/tmp
 mkdir -p dist/tmp/src
+mkdir -p dist/tmp/src/cert
+
+
+
 #cp -aR agiletoolkit-sandbox/phar_skel/* dist/tmp
 cp -aR agiletoolkit-sandbox/{lib,addons,template,init.php} dist/tmp/src
+
+# Grab fresh certificate from agiletoolkit.org site
+echo -n | openssl s_client -connect agiletoolkit.org:443  | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p'  > dist/tmp/src/cert/agiletoolkit.cert
+
+
+
 ( cd phar-packer/; php create-phar.php )
 #( cd _build/atk4_phar; php create-phar.php ) 
 
 
 #cp dist/tmp/agiletoolkit-sandbox.phar dist/agiletoolkit/
-cp dist/tmp/agiletoolkit-sandbox.phar /www/agiletoolkit.org/public/dist/
+#cp dist/tmp/agiletoolkit-sandbox.phar /www/agiletoolkit.org/public/dist/
 #cp _build/atk4_phar/build/atk4-ide.phar dist/agiletoolkit/
 
 # Strip group write permssions as it makes people upset
