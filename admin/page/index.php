@@ -19,6 +19,11 @@ class page_index extends Page {
         $m->addField('name');
         $m->setSource('Session');
 
+        /**
+         * This should be invoked by class Page or API itself
+         * Reason? We can't write this for every page... 
+         * and there is a huge chance that user will override as soon as they figure this out.
+         */
         try {
             $this->app->sandbox->getPolice()->guard();
         } catch (Exception $e) {
