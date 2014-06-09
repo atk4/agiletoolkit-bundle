@@ -17,10 +17,13 @@ class page_index extends Page {
         $m = $this->add('Model');
         $m->addField('id')->system(true);
         $m->addField('name');
-        $m->setSource('Session');//,array('hello','world','blah'));
+        $m->setSource('Session');
 
-
-        $this->app->sandbox->getPolice()->harakiri('Your certificate could not be updated.','org');
+        try {
+            $this->app->sandbox->getPolice()->guard();
+        } catch (Exception $e) {
+            $this->app->sandbox->getPolice()->harakiri('Invalid Certificate.', 'org');
+        }
 
         $cr = $this->add('CRUD');
         $cr->setModel($m);
