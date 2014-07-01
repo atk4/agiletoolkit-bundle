@@ -7,6 +7,8 @@ class Frontend extends ApiFrontend {
         $this->api_public_path = dirname(@$_SERVER['SCRIPT_FILENAME']);
         $this->api_base_path = dirname(dirname(@$_SERVER['SCRIPT_FILENAME']));
 
+        $this->add('Layout_Centered');
+
 
         $this->addLocations();
         $this->addProjectLocations();

@@ -20,9 +20,11 @@ class Controller_Addon extends AbstractController {
 
     function init() {
         parent::init();
+        throw $this->exception('Obsolete','Obsolete');
         $this->api->requires('atk',$this->atk_version);
         $this->namespace = substr(get_class($this), 0, strrpos(get_class($this), '\\'));
         $this->base_path=$this->api->locatePath('addons',$this->namespace);
+        var_Dump($this->base_path);
     }
 
     /**
