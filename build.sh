@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/bin/bash
 
 # Read versio
 version=`cat vendor/atk4/atk4/VERSION`
@@ -9,7 +9,7 @@ mkdir -p dist/agiletoolkit
 #mkdir -p dist/agiletoolkit/atk4-ide
 
 # Copy some stuff inside
-cp -aR vendor dist/agiletoolkit/ 
+cp -aR vendor dist/agiletoolkit/
 
 cp -aR admin dist/agiletoolkit/
 cp -aR frontend dist/agiletoolkit/
@@ -38,7 +38,7 @@ echo -n | openssl s_client -connect agiletoolkit.org:443  | sed -ne '/-BEGIN CER
 
 
 ( cd phar-packer/; php create-phar.php )
-#( cd _build/atk4_phar; php create-phar.php ) 
+#( cd _build/atk4_phar; php create-phar.php )
 
 
 #cp dist/tmp/agiletoolkit-sandbox.phar dist/agiletoolkit/
@@ -51,7 +51,7 @@ echo -n | openssl s_client -connect agiletoolkit.org:443  | sed -ne '/-BEGIN CER
 {
   cat vendor/atk4/atk4/VERSION
   echo -n "Branch: "
-  (cd vendor/atk4/atk4/; git branch)
+  (cd vendor/atk4/atk4/; git rev-parse --abbrev-ref HEAD)
   echo "Build: `date '+%Y-%m-%d'`"
 
   echo -n "Sandbox Revision: "
@@ -59,10 +59,10 @@ echo -n | openssl s_client -connect agiletoolkit.org:443  | sed -ne '/-BEGIN CER
 
   echo -n "ATK4 Revision: "
   (cd vendor/atk4/atk4/; git rev-list --count HEAD)
-} >> dist/VERSION
+} >> dist/agiletoolkit/VERSION
 
 
-# tar, but make sure 
+# tar, but make sure
 ( cd dist; tar --no-same-owner --no-xattrs -czf agiletoolkit-${version}.tgz \
   agiletoolkit/ && cp agiletoolkit-${version}.tgz /www/agiletoolkit.org/public/dist/ )
 
@@ -72,9 +72,9 @@ rm -rf dist
 # next , let's upload file to the server
 
 rm -rf /www/install-test/agiletoolkit/
-( 
-  cd /www/install-test/; 
-  tar -zxf /www/agiletoolkit.org/public/dist/agiletoolkit-${version}.tgz 
+(
+  cd /www/install-test/;
+  tar -zxf /www/agiletoolkit.org/public/dist/agiletoolkit-${version}.tgz
   sudo chgrp upload -R .
 )
 

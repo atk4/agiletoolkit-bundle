@@ -13,8 +13,6 @@ class Admin extends App_Admin {
         ;
 
         $this->api->menu->addMenuItem('/', 'Home');
-        $this->api->menu->addMenuItem('/addons', 'Addons');
-        $this->api->menu->addMenuItem('/installs', 'Installations');
     }
 }
 
