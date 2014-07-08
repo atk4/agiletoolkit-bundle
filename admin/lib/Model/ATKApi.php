@@ -7,6 +7,8 @@ class Model_ATKApi extends Model {
     function init() {
         parent::init();
 
+        throw $this->exception('Obsolete Model_ATKApi','Obsolete');
+
         $hash = $this->api->sandbox->auto_config->getConfig('installation_hash');
         $this->auth = array('INSTALLATION', $hash);
 
