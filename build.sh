@@ -18,6 +18,7 @@ cp -a config-auto.php dist/agiletoolkit/
 cp -a config-default.php dist/agiletoolkit/
 #cp -aR atk4-ide/public dist/agiletoolkit/atk4-ide/
 cp -a index.php dist/agiletoolkit/
+cp -a run.* dist/agiletoolkit/
 
 # Next - remove .git folders to conserve space, not sure if it will kill composer
 ( cd dist/agiletoolkit/ && rm -rf .git )
