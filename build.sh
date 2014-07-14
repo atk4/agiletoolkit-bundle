@@ -65,7 +65,8 @@ echo -n | openssl s_client -connect agiletoolkit.org:443  | sed -ne '/-BEGIN CER
 
 # tar, but make sure
 ( cd dist; tar --no-same-owner --no-xattrs -czf agiletoolkit-${version}.tgz \
-  agiletoolkit/ && cp agiletoolkit-${version}.tgz /www/agiletoolkit.org/public/dist/ )
+  agiletoolkit/ && cp agiletoolkit-${version}.tgz /www/agiletoolkit.org/public/dist/ && \
+  cp dist/agiletoolkit/agiletoolkit-sandbox.phar /www/agiletoolkit.org/public/dist/ )
 
 
 rm -rf dist
