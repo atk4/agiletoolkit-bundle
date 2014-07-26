@@ -63,13 +63,16 @@ cp dist/agiletoolkit/VERSION dist/tmp/src/VERSION
 # Strip group write permssions as it makes people upset
 ( cd dist; chmod g-w -R agiletoolkit )
 
+echo "cleaning .git from dist"
 
+( cd dist && find -name .git | while read x; do rm -r $x; done )
 
 # tar, but make sure
 ( cd dist; tar --no-same-owner --no-xattrs -czf agiletoolkit-${version}.tgz \
   agiletoolkit/ && cp agiletoolkit-${version}.tgz /www/agiletoolkit.org/public/dist/ && \
-  cp dist/agiletoolkit/agiletoolkit-sandbox.phar /www/agiletoolkit.org/public/dist/ )
+  cp agiletoolkit/agiletoolkit-sandbox.phar /www/agiletoolkit.org/public/dist/ )
 
+cat dist/agiletoolkit/VERSION
 
 rm -rf dist
 
