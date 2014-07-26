@@ -37,18 +37,6 @@ cp -aR agiletoolkit-sandbox/{lib,addons,template,init.php} dist/tmp/src
 echo -n | openssl s_client -connect agiletoolkit.org:443  | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p'  > dist/tmp/src/cert/agiletoolkit.cert
 
 
-
-( cd phar-packer/; php create-phar.php )
-#( cd _build/atk4_phar; php create-phar.php )
-
-
-#cp dist/tmp/agiletoolkit-sandbox.phar dist/agiletoolkit/
-#cp dist/tmp/agiletoolkit-sandbox.phar /www/agiletoolkit.org/public/dist/
-#cp _build/atk4_phar/build/atk4-ide.phar dist/agiletoolkit/
-
-# Strip group write permssions as it makes people upset
-( cd dist; chmod g-w -R agiletoolkit )
-
 {
   cat vendor/atk4/atk4/VERSION
   echo -n "Branch: "
@@ -61,6 +49,20 @@ echo -n | openssl s_client -connect agiletoolkit.org:443  | sed -ne '/-BEGIN CER
   echo -n "ATK4 Revision: "
   (cd vendor/atk4/atk4/; git rev-list --count HEAD)
 } >> dist/agiletoolkit/VERSION
+
+cp dist/agiletoolkit/VERSION dist/tmp/src/VERSION
+
+( cd phar-packer/; php create-phar.php )
+#( cd _build/atk4_phar; php create-phar.php )
+
+
+#cp dist/tmp/agiletoolkit-sandbox.phar dist/agiletoolkit/
+#cp dist/tmp/agiletoolkit-sandbox.phar /www/agiletoolkit.org/public/dist/
+#cp _build/atk4_phar/build/atk4-ide.phar dist/agiletoolkit/
+
+# Strip group write permssions as it makes people upset
+( cd dist; chmod g-w -R agiletoolkit )
+
 
 
 # tar, but make sure
