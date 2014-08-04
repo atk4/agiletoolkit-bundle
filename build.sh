@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 # Read versio
 version=`cat vendor/atk4/atk4/VERSION`
@@ -60,7 +60,6 @@ cp dist/agiletoolkit/VERSION dist/tmp/src/VERSION
 
 ( cd phar-packer/; php create-phar.php )
 #( cd _build/atk4_phar; php create-phar.php )
-
 
 #cp dist/tmp/agiletoolkit-sandbox.phar dist/agiletoolkit/
 #cp dist/tmp/agiletoolkit-sandbox.phar /www/agiletoolkit.org/public/dist/
