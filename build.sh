@@ -52,7 +52,7 @@ echo -n | openssl s_client -connect agiletoolkit.org:443  | sed -ne '/-BEGIN CER
 
   ver=`(cd agiletoolkit-css; cat framework/less/agiletoolkit.less | head -n10 | grep 'Agile Toolkit' | sed 's/.* v//')`
   rev=`(cd agiletoolkit-css; git rev-list --count HEAD)`
-  echo -n "Agile CSS: $ver ($rev)"
+  echo "Agile CSS: $ver ($rev)"
 
 } >> dist/agiletoolkit/VERSION
 
@@ -68,8 +68,8 @@ cp dist/agiletoolkit/VERSION dist/tmp/src/VERSION
 cp gitignore-distrib dist/agiletoolkit/
 
 # Todo - we should compile it here instead
-cp -aR vendor/atk4/atk4/public/atk4 admin/public/
-cp -aR vendor/atk4/atk4/public/atk4 frontend/public/
+cp -aR vendor/atk4/atk4/public/atk4 dist/agiletoolkit/admin/public/
+cp -aR vendor/atk4/atk4/public/atk4 dist/agiletoolkit/frontend/public/
 
 # Strip group write permssions as it makes people upset
 ( cd dist; chmod g-w -R agiletoolkit )
