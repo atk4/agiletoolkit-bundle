@@ -65,7 +65,7 @@ cp dist/agiletoolkit/VERSION dist/tmp/src/VERSION
 #cp dist/tmp/agiletoolkit-sandbox.phar /www/agiletoolkit.org/public/dist/
 #cp _build/atk4_phar/build/atk4-ide.phar dist/agiletoolkit/
 
-cp gitignore-distrib dist/agiletoolkit/
+cp gitignore-distrib dist/agiletoolkit/.gitignore
 
 # Todo - we should compile it here instead
 cp -aR vendor/atk4/atk4/public/atk4 dist/agiletoolkit/admin/public/
