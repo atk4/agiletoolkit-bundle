@@ -2,37 +2,18 @@
   "type":"project",
   "require":{
     "atk4\/atk4":"4.3.*@dev",
-    "rvadym\/languages":"dev-master",
-    "rvadym\/x_tinymce":"dev-master",
-    "rvadym\/blog":"dev-master",
     "educoder\/pest":"1.0.0"
   },
   "autoload":{
     "psr-0":{
-      "":[
-        
-      ],
-      "installer":"atk4-util"
+      "":[ ]
     }
   },
-  "scripts":{
-    "commented-post-package-install":[
-      "installer\\InstallApi::postPackageInstall"
-    ],
-    "comment-post-install-cmd":[
-      "installer\\InstallApi::postInstallCmd"
-    ],
-    "commentpost-package-update":[
-      "installer\\InstallApi::postPackageInstall"
-    ],
-    "comment-post-update-cmd":[
-      "installer\\InstallApi::postInstallCmd"
-    ]
-  },
-  "repositories":[
-    {
-      "type":"vcs",
-      "url":"git@github.com:rvadym\/blog.git"
+  "extra": {
+    "heroku": {
+      "document-root": "admin/public",
+      "index-document": "index.php",
+      "php-config": [ "display_errors=on" ]
     }
-  ]
+  }
 }
