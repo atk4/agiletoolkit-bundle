@@ -14,7 +14,7 @@ cp -aR vendor dist/agiletoolkit/
 cp -aR admin dist/agiletoolkit/
 cp -aR frontend dist/agiletoolkit/
 #cp -aR shared dist/agiletoolkit/
-cp -a config-auto.php dist/agiletoolkit/
+#cp -a config-auto.php dist/agiletoolkit/
 cp -a config-default.php dist/agiletoolkit/
 #cp -aR atk4-ide/public dist/agiletoolkit/atk4-ide/
 cp -a index.php dist/agiletoolkit/
