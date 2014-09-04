@@ -11,7 +11,7 @@ class page_index extends Page
         $this->add('P')->set('Open frontend/page/index.php file in your text editor and follow documentation.');
 
         $this->add('Button')
-            ->set(['Agile Toolkit Book', 'icon'=>'book', 'swatch'=>'green'])
+            ->set(array('Agile Toolkit Book', 'icon'=>'book', 'swatch'=>'green'))
             ->link('http://book.agiletoolkit.org/app/frontend.html');
     }
 }
