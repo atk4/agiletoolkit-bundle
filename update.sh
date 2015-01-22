@@ -45,6 +45,7 @@ if [ -f composer.json ]; then
         ( cd vendor/atk4/atk4; git checkout 4.3 )
         ( cd vendor/atk4/atk4; git remote add composer git://github.com/atk4/atk4.git )
 
+
         touch config-auto.php
         chmod 777 config-auto.php
     fi
@@ -61,3 +62,8 @@ cat dependencies | while read dir path; do
     ( cd $dir; git clone $path . )
   fi
 done
+
+echo "== STEP 6 == Fixing fucking Pest"
+# merge https://github.com/educoder/pest/pull/54
+( cd vendor/educoder; rm -rf pest; git clone https://github.com/romaninsh/pest.git; cd pest; rm -rf .git )
+
