@@ -56,7 +56,12 @@ echo -n | openssl s_client -connect agiletoolkit.org:443  | sed -ne '/-BEGIN CER
 
 } >> dist/agiletoolkit/VERSION
 
+{
+  cat agiletoolkit-sandbox/addons/sandbox/lib/Initiator.php | grep -A1 getVersion | tail -1 | cut -d"'" -f2
+} >> dist/agiletoolkit/VERSION.Sandbox
+
 cp dist/agiletoolkit/VERSION dist/tmp/src/VERSION
+cp dist/agiletoolkit/VERSION.Sandbox dist/tmp/src/VERSION.Sandbox
 
 ( cd phar-packer/; php create-phar.php )
 #( cd _build/atk4_phar; php create-phar.php )
