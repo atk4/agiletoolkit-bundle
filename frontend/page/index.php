@@ -15,13 +15,3 @@ class page_index extends Page
             ->link('http://book.agiletoolkit.org/app/frontend.html');
     }
 }
-
-class Form_Test extends Form {
-    function init() {
-        parent::init();
-//        $this->add('\\rvadym\\x_tinymce\\Controller_TinyMCE');
-
-
-        $this->addField('Text','text');
-    }
-}

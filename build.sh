@@ -73,6 +73,7 @@ cp dist/agiletoolkit/VERSION.Sandbox dist/tmp/src/VERSION.Sandbox
 cp gitignore-distrib dist/agiletoolkit/.gitignore
 cp composer.json dist/agiletoolkit/
 cp composer.lock dist/agiletoolkit/
+rm dist/agiletoolkit/vendor/atk4/atk4/.htaccess
 
 # Todo - we should compile it here instead
 cp -aR vendor/atk4/atk4/public/atk4 dist/agiletoolkit/admin/public/
