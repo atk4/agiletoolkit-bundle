@@ -15,11 +15,3 @@ class Admin extends App_Admin {
         $this->api->menu->addMenuItem('/', 'Home');
     }
 }
-
-
-
-        // For improved compatibility with Older Toolkit. See Documentation.
-        // $this->add('Controller_Compat42')
-        //     ->useOldTemplateTags()
-        //     ->useOldStyle()
-        //     ->useSMLite();
