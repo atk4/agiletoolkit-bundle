@@ -41,10 +41,10 @@ if [ -f composer.json ]; then
 
         echo "== STEP 4 == Fixing fucking Composer"
         # composer fucks up few things, so fix them
-        ( cd vendor/atk4/atk4; git remote rm composer )
-        ( cd vendor/atk4/atk4; git checkout master )
-        ( cd vendor/atk4/atk4; git remote add composer git://github.com/atk4/atk4.git )
-
+        #( cd vendor/atk4/atk4; git remote rm composer )
+        #( cd vendor/atk4/atk4; git checkout master )
+        #( cd vendor/atk4/atk4; git remote add composer git://github.com/atk4/atk4.git )
+#
 
         touch config-auto.php
         chmod 777 config-auto.php
