@@ -10,7 +10,6 @@ upload
 config.php
 config-auto.php
 composer.phar
-composer.lock
 /vendor/*
 /atk4-addons/*
 /atk4-ide/*
