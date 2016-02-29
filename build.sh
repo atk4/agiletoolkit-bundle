@@ -67,7 +67,9 @@ cp dist/agiletoolkit/VERSION.Sandbox dist/tmp/src/VERSION.Sandbox
 #( cd _build/atk4_phar; php create-phar.php )
 
 #cp dist/tmp/agiletoolkit-sandbox.phar dist/agiletoolkit/
-#cp dist/tmp/agiletoolkit-sandbox.phar /www/agiletoolkit.org/public/dist/
+bundle_version=`cat agiletoolkit-sandbox/VERSION`
+mkdir /www/agiletoolkit.org/public/dist/$bundle_version
+cp dist/tmp/agiletoolkit-sandbox.phar /www/agiletoolkit.org/public/dist/$bundle_version/
 #cp _build/atk4_phar/build/atk4-ide.phar dist/agiletoolkit/
 
 cp gitignore-distrib dist/agiletoolkit/.gitignore
@@ -108,4 +110,5 @@ rm -rf /www/install-test/agiletoolkit/
 chmod -R g+w /www/install-test/agiletoolkit/
 
 echo "Installed. Archive is http://www4.agiletoolkit.org/dist/agiletoolkit-${version}.tgz "
+echo "Sandbox is http://www4.agiletoolkit.org/dist/$bundle_version/agiletoolkit-sandbox.phar "
 echo "Test: http://install-test-399482.agiletoolkit.org/agiletoolkit/"
