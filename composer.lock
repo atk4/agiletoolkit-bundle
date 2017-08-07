@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "84ae8a263c9e432f75b5d03be01073fe",
+    "content-hash": "d05cdea1e1a636575abf226e5ef2c376",
     "packages": [
         {
             "name": "atk4/core",
@@ -222,48 +222,6 @@
                 "widget"
             ],
             "time": "2017-06-25T19:56:07+00:00"
-        },
-        {
-            "name": "educoder/pest",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/educoder/pest.git",
-                "reference": "7c4d24d6aafc4ebac711c73cc8797d9b1779525b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/educoder/pest/zipball/7c4d24d6aafc4ebac711c73cc8797d9b1779525b",
-                "reference": "7c4d24d6aafc4ebac711c73cc8797d9b1779525b",
-                "shasum": ""
-            },
-            "require": {
-                "lib-curl": "*",
-                "php": ">=5.2"
-            },
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    ""
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Matt Zukowski",
-                    "email": "matt@zukowski.ca"
-                },
-                {
-                    "name": "Donald Sipe",
-                    "email": "donald.sipe@gmail.com"
-                }
-            ],
-            "description": "A proper REST client for PHP.",
-            "homepage": "https://github.com/educoder/pest",
-            "time": "2013-11-17T12:58:01+00:00"
         },
         {
             "name": "fzaninotto/faker",
