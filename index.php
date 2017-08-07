@@ -1,22 +1,38 @@
 <?php
-if (file_exists('./agiletoolkit-sandbox.phar')) {
-    require_once "./agiletoolkit-sandbox.phar";
 
-    include_once'phar://agiletoolkit-sandbox.phar/addons/sandbox/lib/Controller/Config.php';
-    include_once'phar://agiletoolkit-sandbox.phar/lib/AgileToolkit/Installer.php';
-} elseif (file_exists('./agiletoolkit-sandbox') && is_dir('./agiletoolkit-sandbox')){
+require 'vendor/autoload.php';
 
-    // include_once'vendor/atk4/atk4/loader.php';
-    include_once'vendor/autoload.php';
-    include_once'agiletoolkit-sandbox/init.php';
+$app = new \atk4\ui\App('Welcome to Agile Toolkit');
+$app->initLayout('Centered');
 
-    # We need to manually load the API
-    include_once'agiletoolkit-sandbox/addons/sandbox/lib/Controller/Config.php';
-    include_once'agiletoolkit-sandbox/lib/AgileToolkit/Installer.php';
 
-} else {
-    exit('Download atk4-ide.phar to use installer.');
-}
+/****************************************************************
+ * You can now remove the text below and write your own Web App *
+ *                                                              *
+ * Thank you for trying out Agile Toolkit                       *
+ ****************************************************************/
 
-$api=new AgileToolkit_Installer('new_atk4_install');
-$api->main();
+
+$app->add('Text')
+    ->addParagraph('You have successfully installed Agile Toolkit')
+    ->addParagraph('Open index.php file in your text editor and follow documentation.');
+
+$app->add(['Button', 'icon'=>'dashboard'])
+    ->addClass('primary')
+    ->set('Admin')
+    ->link(['admin']);
+
+$app->add(['Button', 'icon'=>'lightning'])
+    ->set('Quick Intro')
+    ->setAttr('target', '_blank')
+    ->link('http://agiletoolkit.org/intro/');
+
+$app->add(['Button', 'icon'=>'book'])
+    ->set('Documentation')
+    ->setAttr('target', '_blank')
+    ->link('http://agile-ui.readthedocs.io/');
+
+$app->add(['Button', 'icon'=>'trophy'])
+    ->set('Examples')
+    ->setAttr('target', '_blank')
+    ->link('http://ui.agiletoolkit.org/');

@@ -4,42 +4,224 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "89db7d07ac6e661a571bb657512322b9",
-    "content-hash": "77285b0d5d9a012de65566a529cdb47e",
+    "content-hash": "84ae8a263c9e432f75b5d03be01073fe",
     "packages": [
         {
-            "name": "atk4/atk4",
-            "version": "4.3.2",
+            "name": "atk4/core",
+            "version": "1.2.2",
             "source": {
                 "type": "git",
-                "url": "https://github.com/atk4/atk4.git",
-                "reference": "09fc88103a65c74abc6b1db4f51f5963b68dab9a"
+                "url": "https://github.com/atk4/core.git",
+                "reference": "5aaf21b54845591fe05e57a44b0e6bb6adb215f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/atk4/atk4/zipball/09fc88103a65c74abc6b1db4f51f5963b68dab9a",
-                "reference": "09fc88103a65c74abc6b1db4f51f5963b68dab9a",
+                "url": "https://api.github.com/repos/atk4/core/zipball/5aaf21b54845591fe05e57a44b0e6bb6adb215f2",
+                "reference": "5aaf21b54845591fe05e57a44b0e6bb6adb215f2",
                 "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "codeclimate/php-test-reporter": "*",
+                "phpunit/phpunit": "~4.0"
             },
             "type": "library",
             "autoload": {
-                "psr-0": {
-                    "": "lib/"
-                },
-                "files": [
-                    "/lib/static.php"
-                ]
+                "psr-4": {
+                    "atk4\\core\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
-            "homepage": "https://agiletoolkit.org/",
-            "keywords": [
-                "atk4",
-                "framework"
+            "authors": [
+                {
+                    "name": "Romans Malinovskis",
+                    "email": "romans@agiletoolkit.org",
+                    "homepage": "https://nearly.guru/"
+                }
             ],
-            "time": "2016-02-28 13:38:32"
+            "description": "Agile Core - collection of PHP Traits for designing object-oriented frameworks",
+            "homepage": "https://github.com/atk4/core",
+            "keywords": [
+                "Agile Toolkit",
+                "framework",
+                "php",
+                "trains"
+            ],
+            "time": "2017-04-13T01:51:36+00:00"
+        },
+        {
+            "name": "atk4/data",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/atk4/data.git",
+                "reference": "ed949e6b8876d5130bc09ade0cc6eb8e4d841c3b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/atk4/data/zipball/ed949e6b8876d5130bc09ade0cc6eb8e4d841c3b",
+                "reference": "ed949e6b8876d5130bc09ade0cc6eb8e4d841c3b",
+                "shasum": ""
+            },
+            "require": {
+                "atk4/core": "^1.2",
+                "atk4/dsql": "^1.1",
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "atk4/schema": "*",
+                "codeclimate/php-test-reporter": "*",
+                "phpunit/phpunit": "<6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "atk4\\data\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Romans Malinovskis",
+                    "email": "romans@agiletoolkit.org",
+                    "homepage": "https://nearly.guru/"
+                }
+            ],
+            "description": "Agile Data - Database access abstraction framework",
+            "homepage": "https://github.com/atk4/data",
+            "keywords": [
+                "Active Record",
+                "builder",
+                "framework",
+                "mongodb",
+                "mysql",
+                "nosql",
+                "orm",
+                "postgresql",
+                "query",
+                "sql"
+            ],
+            "time": "2017-06-15T20:00:29+00:00"
+        },
+        {
+            "name": "atk4/dsql",
+            "version": "1.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/atk4/dsql.git",
+                "reference": "576bba88b0ed39dc99a9aa16e69d10a884237f30"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/atk4/dsql/zipball/576bba88b0ed39dc99a9aa16e69d10a884237f30",
+                "reference": "576bba88b0ed39dc99a9aa16e69d10a884237f30",
+                "shasum": ""
+            },
+            "require": {
+                "atk4/core": "^1.2",
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "codeclimate/php-test-reporter": "*",
+                "phpunit/dbunit": ">=1.2",
+                "phpunit/phpcov": "*",
+                "phpunit/phpunit": "<6"
+            },
+            "suggest": {
+                "jdorn/sql-formatter": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "atk4\\dsql\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Romans Malinovskis",
+                    "email": "romans@agiletoolkit.org",
+                    "homepage": "https://nearly.guru/"
+                }
+            ],
+            "description": "Dynamic SQL Builder in PHP",
+            "homepage": "http://agiletoolkit.org/",
+            "keywords": [
+                "builder",
+                "framework",
+                "orm",
+                "sql"
+            ],
+            "time": "2017-04-13T01:42:27+00:00"
+        },
+        {
+            "name": "atk4/ui",
+            "version": "1.1.10",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/atk4/ui.git",
+                "reference": "a866b740f033e8fed4de9058166791a392842169"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/atk4/ui/zipball/a866b740f033e8fed4de9058166791a392842169",
+                "reference": "a866b740f033e8fed4de9058166791a392842169",
+                "shasum": ""
+            },
+            "require": {
+                "atk4/core": "^1.2",
+                "atk4/data": "^1.2",
+                "fzaninotto/faker": "*",
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "codeclimate/php-test-reporter": "*",
+                "phpunit/phpunit": "<6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "atk4\\ui\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Romans Malinovskis",
+                    "email": "romans@agiletoolkit.org",
+                    "homepage": "https://nearly.guru/"
+                }
+            ],
+            "description": "Agile UI - Web Component Framework written in PHP",
+            "homepage": "https://agiletoolkit.org/ui",
+            "keywords": [
+                "button",
+                "component",
+                "crud",
+                "form",
+                "framework",
+                "gadget",
+                "grid",
+                "render",
+                "ui",
+                "web",
+                "widget"
+            ],
+            "time": "2017-06-25T19:56:07+00:00"
         },
         {
             "name": "educoder/pest",
@@ -81,7 +263,55 @@
             ],
             "description": "A proper REST client for PHP.",
             "homepage": "https://github.com/educoder/pest",
-            "time": "2013-11-17 12:58:01"
+            "time": "2013-11-17T12:58:01+00:00"
+        },
+        {
+            "name": "fzaninotto/faker",
+            "version": "v1.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fzaninotto/Faker.git",
+                "reference": "44f9a286a04b80c76a4e5fb7aad8bb539b920123"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/44f9a286a04b80c76a4e5fb7aad8bb539b920123",
+                "reference": "44f9a286a04b80c76a4e5fb7aad8bb539b920123",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.3.3|^7.0"
+            },
+            "require-dev": {
+                "ext-intl": "*",
+                "phpunit/phpunit": "~4.0",
+                "squizlabs/php_codesniffer": "~1.5"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": []
+            },
+            "autoload": {
+                "psr-4": {
+                    "Faker\\": "src/Faker/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "François Zaninotto"
+                }
+            ],
+            "description": "Faker is a PHP library that generates fake data for you.",
+            "keywords": [
+                "data",
+                "faker",
+                "fixtures"
+            ],
+            "time": "2016-04-29T12:21:54+00:00"
         }
     ],
     "packages-dev": [],
