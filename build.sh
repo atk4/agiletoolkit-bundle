@@ -19,6 +19,7 @@ cp -a index.php dist/agiletoolkit/
 cp -aR Agile\ Toolkit.app dist/agiletoolkit/
 cp -a run.sh dist/agiletoolkit/
 cp -a run.bat dist/agiletoolkit/
+cp -a .DS_Store dist/agiletoolkit/
 
 cp -a .gitignore dist/agiletoolkit/
 

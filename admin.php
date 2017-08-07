@@ -13,6 +13,8 @@ $app->initLayout('Admin');
  * Thank you for trying out Agile Toolkit                       *
  ****************************************************************/
 
+// Default installation gives warning, so update php.ini the remove this line
+date_default_timezone_set('UTC');
 
 $app->layout->leftMenu->addItem(['Front-end demo', 'icon'=>'puzzle'], ['index']);
 $app->layout->leftMenu->addItem(['Admin demo', 'icon'=>'dashboard'], ['admin']);
