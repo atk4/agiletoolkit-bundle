@@ -14,7 +14,7 @@ $app->initLayout('Centered');
 
 
 $app->add('Text')
-    ->addParagraph('You have successfully installed Agile Toolkit')
+    ->addParagraph('You have successfully installed Agile Toolkit '.$app->version)
     ->addParagraph('Open index.php file in your text editor and follow documentation.');
 
 $app->add(['Button', 'icon'=>'dashboard'])
